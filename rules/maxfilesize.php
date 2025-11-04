@@ -1,6 +1,6 @@
 <?php
 
-namespace Contactable\SWV;
+namespace Rocklobsterinc\SWV;
 
 class MaxFileSizeRule extends Rule {
 
