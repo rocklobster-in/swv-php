@@ -1,0 +1,14 @@
+{
+  "name": "rocklobsterinc/swv",
+  "description": "Schema-Woven Validation for PHP",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Takayuki Miyoshi",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=7.4"
+  }
+}
