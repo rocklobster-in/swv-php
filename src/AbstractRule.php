@@ -2,4 +2,5 @@
 
 namespace RockLobsterInc\SchemaWovenValidation;
 
-class Invalidity extends \Exception {}
+abstract class AbstractRule {
+}

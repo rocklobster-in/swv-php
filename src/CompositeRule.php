@@ -1,6 +1,6 @@
 <?php
 
-namespace RockLobsterInc\SWV;
+namespace RockLobsterInc\SchemaWovenValidation;
 
 abstract class CompositeRule extends AbstractRule {
 }
