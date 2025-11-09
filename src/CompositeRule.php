@@ -10,7 +10,7 @@ abstract class CompositeRule extends AbstractRule {
 	/**
 	 * Sub-rules of the rule.
 	 */
-	protected $rules = array();
+	protected array $rules = array();
 
 
 	/**
@@ -18,7 +18,7 @@ abstract class CompositeRule extends AbstractRule {
 	 *
 	 * @param AbstractRule $rule Sub-rule to be added.
 	 */
-	public function addRule( AbstractRule $rule ) {
+	public function addRule( AbstractRule $rule ): bool {
 		$this->rules[] = $rule;
 
 		return true;

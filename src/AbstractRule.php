@@ -10,7 +10,7 @@ abstract class AbstractRule {
 	/**
 	 * Properties of the rule.
 	 */
-	protected $properties = array();
+	protected array $properties = array();
 
 
 	/**
@@ -18,7 +18,7 @@ abstract class AbstractRule {
 	 *
 	 * @param array $properties Properties of the rule.
 	 */
-	public function __construct( array $properties = [] ) {
+	public function __construct( iterable $properties = [] ) {
 		$this->properties = $properties;
 	}
 
@@ -28,7 +28,7 @@ abstract class AbstractRule {
 	 *
 	 * @param array $context Context.
 	 */
-	public function matches( array $context ) {
+	public function matches( iterable $context ): bool {
 		return true;
 	}
 
@@ -38,7 +38,7 @@ abstract class AbstractRule {
 	 *
 	 * @param array $context Context.
 	 */
-	public function validate( array $context ) {
+	public function validate( iterable $context ) {
 		return true;
 	}
 
