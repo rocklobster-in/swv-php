@@ -1,6 +1,6 @@
 <?php
 
-namespace RockLobsterInc\SchemaWovenValidation;
+namespace RockLobsterInc\Swv;
 
 /**
  * Exception that represents a validation error.

@@ -1,6 +1,6 @@
 <?php
 
-namespace RockLobsterInc\SchemaWovenValidation;
+namespace RockLobsterInc\Swv;
 
 class Schema extends CompositeRule {
 

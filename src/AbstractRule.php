@@ -1,6 +1,6 @@
 <?php
 
-namespace RockLobsterInc\SchemaWovenValidation;
+namespace RockLobsterInc\Swv;
 
 /**
  * Abstract class that represents the root of all SWV rules.

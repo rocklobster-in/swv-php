@@ -1,6 +1,6 @@
 <?php
 
-namespace Rocklobsterinc\SWV;
+namespace RockLobsterInc\Swv;
 
 class MinFileSizeRule extends Rule {
 
