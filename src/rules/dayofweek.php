@@ -1,10 +1,12 @@
 <?php
 
-namespace RockLobsterInc\Swv;
+namespace RockLobsterInc\Swv\Rules;
 
-class DayofweekRule extends Rule {
+use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
 
-	const rule_name = 'dayofweek';
+class DayofweekRule extends AbstractRule {
+
+	const RULE_NAME = 'dayofweek';
 
 	public function matches( $context ) {
 		if ( false === parent::matches( $context ) ) {

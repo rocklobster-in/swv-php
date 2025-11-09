@@ -1,10 +1,12 @@
 <?php
 
-namespace RockLobsterInc\Swv;
+namespace RockLobsterInc\Swv\Rules;
 
-class MinFileSizeRule extends Rule {
+use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
 
-	const rule_name = 'minfilesize';
+class MinFileSizeRule extends AbstractRule {
+
+	const RULE_NAME = 'minfilesize';
 
 	public function matches( $context ) {
 		if ( false === parent::matches( $context ) ) {

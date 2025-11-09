@@ -1,10 +1,12 @@
 <?php
 
-namespace RockLobsterInc\Swv;
+namespace RockLobsterInc\Swv\Rules;
 
-class MinDateRule extends Rule {
+use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
 
-	const rule_name = 'mindate';
+class MinDateRule extends AbstractRule {
+
+	const RULE_NAME = 'mindate';
 
 	public function matches( $context ) {
 		if ( false === parent::matches( $context ) ) {

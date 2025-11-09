@@ -1,10 +1,12 @@
 <?php
 
-namespace RockLobsterInc\Swv;
+namespace RockLobsterInc\Swv\Rules;
+
+use RockLobsterInc\Swv\{ CompositeRule, Invalidity };
 
 class AllRule extends CompositeRule {
 
-	const rule_name = 'all';
+	const RULE_NAME = 'all';
 
 	public function matches( $context ) {
 		if ( false === parent::matches( $context ) ) {

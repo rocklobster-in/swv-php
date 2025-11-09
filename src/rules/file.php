@@ -1,10 +1,12 @@
 <?php
 
-namespace RockLobsterInc\Swv;
+namespace RockLobsterInc\Swv\Rules;
 
-class FileRule extends Rule {
+use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
 
-	const rule_name = 'file';
+class FileRule extends AbstractRule {
+
+	const RULE_NAME = 'file';
 
 	public function matches( $context ) {
 		if ( false === parent::matches( $context ) ) {

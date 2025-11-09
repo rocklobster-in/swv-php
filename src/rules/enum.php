@@ -1,10 +1,12 @@
 <?php
 
-namespace RockLobsterInc\Swv;
+namespace RockLobsterInc\Swv\Rules;
 
-class EnumRule extends Rule {
+use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
 
-	const rule_name = 'enum';
+class EnumRule extends AbstractRule {
+
+	const RULE_NAME = 'enum';
 
 	public function matches( $context ) {
 		if ( false === parent::matches( $context ) ) {

@@ -1,10 +1,12 @@
 <?php
 
-namespace RockLobsterInc\Swv;
+namespace RockLobsterInc\Swv\Rules;
 
-class MinItemsRule extends Rule {
+use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
 
-	const rule_name = 'minitems';
+class MinItemsRule extends AbstractRule {
+
+	const RULE_NAME = 'minitems';
 
 	public function matches( $context ) {
 		if ( false === parent::matches( $context ) ) {

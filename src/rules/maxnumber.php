@@ -1,10 +1,12 @@
 <?php
 
-namespace RockLobsterInc\Swv;
+namespace RockLobsterInc\Swv\Rules;
 
-class MaxNumberRule extends Rule {
+use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
 
-	const rule_name = 'maxnumber';
+class MaxNumberRule extends AbstractRule {
+
+	const RULE_NAME = 'maxnumber';
 
 	public function matches( $context ) {
 		if ( false === parent::matches( $context ) ) {

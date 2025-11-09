@@ -1,10 +1,12 @@
 <?php
 
-namespace RockLobsterInc\Swv;
+namespace RockLobsterInc\Swv\Rules;
 
-class NumberRule extends Rule {
+use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
 
-	const rule_name = 'number';
+class NumberRule extends AbstractRule {
+
+	const RULE_NAME = 'number';
 
 	public function matches( $context ) {
 		if ( false === parent::matches( $context ) ) {

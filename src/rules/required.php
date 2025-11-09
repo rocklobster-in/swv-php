@@ -1,10 +1,12 @@
 <?php
 
-namespace RockLobsterInc\Swv;
+namespace RockLobsterInc\Swv\Rules;
 
-class RequiredRule extends Rule {
+use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
 
-	const rule_name = 'required';
+class RequiredRule extends AbstractRule {
+
+	const RULE_NAME = 'required';
 
 	public function matches( $context ) {
 		if ( false === parent::matches( $context ) ) {

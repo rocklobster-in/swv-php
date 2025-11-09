@@ -1,10 +1,12 @@
 <?php
 
-namespace RockLobsterInc\Swv;
+namespace RockLobsterInc\Swv\Rules;
 
-class MaxFileSizeRule extends Rule {
+use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
 
-	const rule_name = 'maxfilesize';
+class MaxFileSizeRule extends AbstractRule {
+
+	const RULE_NAME = 'maxfilesize';
 
 	public function matches( $context ) {
 		if ( false === parent::matches( $context ) ) {

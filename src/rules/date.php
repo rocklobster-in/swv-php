@@ -1,10 +1,12 @@
 <?php
 
-namespace RockLobsterInc\Swv;
+namespace RockLobsterInc\Swv\Rules;
 
-class DateRule extends Rule {
+use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
 
-	const rule_name = 'date';
+class DateRule extends AbstractRule {
+
+	const RULE_NAME = 'date';
 
 	public function matches( $context ) {
 		if ( false === parent::matches( $context ) ) {

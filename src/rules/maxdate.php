@@ -1,10 +1,12 @@
 <?php
 
-namespace RockLobsterInc\Swv;
+namespace RockLobsterInc\Swv\Rules;
 
-class MaxDateRule extends Rule {
+use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
 
-	const rule_name = 'maxdate';
+class MaxDateRule extends AbstractRule {
+
+	const RULE_NAME = 'maxdate';
 
 	public function matches( $context ) {
 		if ( false === parent::matches( $context ) ) {

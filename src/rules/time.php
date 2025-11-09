@@ -1,10 +1,12 @@
 <?php
 
-namespace RockLobsterInc\Swv;
+namespace RockLobsterInc\Swv\Rules;
 
-class TimeRule extends Rule {
+use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
 
-	const rule_name = 'time';
+class TimeRule extends AbstractRule {
+
+	const RULE_NAME = 'time';
 
 	public function matches( $context ) {
 		if ( false === parent::matches( $context ) ) {
