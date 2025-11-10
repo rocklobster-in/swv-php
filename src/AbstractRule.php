@@ -18,7 +18,7 @@ abstract class AbstractRule {
 	 *
 	 * @param array $properties Properties of the rule.
 	 */
-	public function __construct( iterable $properties = [] ) {
+	public function __construct( array $properties = [] ) {
 		$this->properties = $properties;
 	}
 
@@ -36,9 +36,10 @@ abstract class AbstractRule {
 	/**
 	 * Validates with this rule's logic.
 	 *
+	 * @param FormDataInterface $form_data Form data.
 	 * @param array $context Context.
 	 */
-	public function validate( iterable $context ) {
+	public function validate( FormDataInterface $form_data, iterable $context ) {
 		return true;
 	}
 
