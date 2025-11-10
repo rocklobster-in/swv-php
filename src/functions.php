@@ -56,7 +56,13 @@ function strip_whitespaces( string|array $input ): string|array {
  * @return array Array without blank text values.
  */
 function exclude_blank( array $input ): array {
-	return array_filter( $input, static function ( $item ) {
-		return isset( $item ) && '' !== strip_whitespaces( $item );
-	} );
+	return array_reduce( $input, static function ( $carry, $item ) {
+		if ( is_array( $item ) ) {
+			$carry = array_merge( $carry, exclude_blank( $item ) );
+		} elseif ( isset( $item ) and '' !== $item ) {
+			$carry[] = $item;
+		}
+
+		return $carry;
+	}, array() );
 }
