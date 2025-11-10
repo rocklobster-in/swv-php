@@ -9,7 +9,7 @@ namespace RockLobsterInc\Swv;
 interface FormDataInterface {
 
 	/**
-	 * Returns the first value associated with a given field name.
+	 * Returns the values associated with a given field name.
 	 *
 	 * @param string $name Field name.
 	 */
@@ -22,6 +22,6 @@ interface FormDataInterface {
 	 *
 	 * @param string $name Field name.
 	 */
-	public function has( string $name );
+	public function has( string $name ): bool;
 
 }
