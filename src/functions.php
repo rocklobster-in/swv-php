@@ -66,3 +66,25 @@ function exclude_blank( array $input ): array {
 		return $carry;
 	}, array() );
 }
+
+
+/**
+ * Return components of the given name.
+ *
+ * @param string $name Field name, such as 'abc', 'abc[de]', or 'abc[]'.
+ * @return array Single dimension array of name components.
+ */
+function dissolve_name( string $name ): array {
+	$first_bracket = strpos( $name, '[' );
+
+	if ( false === $first_bracket ) {
+		return [ $name ];
+	}
+
+	$core = substr( $name, 0, $first_bracket );
+	$dimensions = substr( $name, $first_bracket );
+
+	preg_match_all( '/\[(.*?)\]/', $dimensions, $matches );
+
+	return [ $core, ...$matches[1] ];
+}

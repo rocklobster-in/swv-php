@@ -26,26 +26,4 @@ class StandardFormData implements FormDataInterface {
 	public function getFiles( string $name ): array {
 	}
 
-
-	/**
-	 * Returns parts of a given name.
-	 *
-	 * @param string $name Field name.
-	 * @return array Single dimension array of name parts.
-	 */
-	private function dissolve( string $name ): array {
-		$first_bracket = strpos( $name, '[' );
-
-		if ( false === $first_bracket ) {
-			return [ $name ];
-		}
-
-		$core = substr( $name, 0, $first_bracket );
-		$dimensions = substr( $name, $first_bracket );
-
-		preg_match_all( '/\[(.*?)\]/', $dimensions, $matches );
-
-		return [ $core, ...$matches[1] ];
-	}
-
 }
