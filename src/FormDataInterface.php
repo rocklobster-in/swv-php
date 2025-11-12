@@ -17,11 +17,10 @@ interface FormDataInterface {
 
 
 	/**
-	 * Returns true if the object has the value associated with a given field
-	 * name.
+	 * Returns the file objects associated with a given field name.
 	 *
 	 * @param string $name Field name.
 	 */
-	public function has( string $name ): bool;
+	public function getFiles( string $name );
 
 }
