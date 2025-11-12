@@ -14,6 +14,23 @@ class StandardFormData implements FormDataInterface {
 	 * @return array Single dimension array of the values.
 	 */
 	public function get( string $name ): array {
+		$name_parts = dissolve_name( $name );
+
+		if ( empty( $name_parts ) ) {
+			return [];
+		}
+
+		$posted_value = $_POST;
+
+		while ( $next = array_shift( $name_parts ) ) {
+			if ( isset( $posted_value[ $next ] ) ) {
+				$posted_value = $posted_value[ $next ];
+			} else {
+				return [];
+			}
+		}
+
+		return array_flatten( $posted_value );
 	}
 
 
