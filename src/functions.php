@@ -86,5 +86,5 @@ function dissolve_name( string $name ): array {
 
 	preg_match_all( '/\[(.*?)\]/', $dimensions, $matches );
 
-	return [ $core, ...$matches[1] ];
+	return array_map( 'trim', [ $core, ...$matches[1] ] );
 }
