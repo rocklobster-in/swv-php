@@ -9,6 +9,7 @@ class StandardFile implements FileInterface {
 
 	private string $name;
 	private int $size;
+	private string $temporaryFilePath;
 	private int $error;
 
 
@@ -20,6 +21,7 @@ class StandardFile implements FileInterface {
 	public function __construct( array $properties = [] ) {
 		$this->name = $properties[ 'name' ];
 		$this->size = $properties[ 'size' ];
+		$this->temporaryFilePath = $properties[ 'temporaryFilePath' ];
 		$this->error = $properties[ 'error' ];
 	}
 
@@ -37,6 +39,15 @@ class StandardFile implements FileInterface {
 	 */
 	public function size(): int {
 		return $this->size;
+	}
+
+
+	/**
+	 * Returns the full path of the file in which the uploaded file was
+	 * stored on the server.
+	 */
+	public function temporaryFilePath(): string {
+		return $this->temporaryFilePath;
 	}
 
 

@@ -20,6 +20,13 @@ interface FileInterface {
 
 
 	/**
+	 * Returns the full path of the file in which the uploaded file was
+	 * stored on the server.
+	 */
+	public function temporaryFilePath(): string;
+
+
+	/**
 	 * Returns the error code associated with this file upload.
 	 */
 	public function error(): int;
