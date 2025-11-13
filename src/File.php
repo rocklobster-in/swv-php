@@ -5,7 +5,7 @@ namespace RockLobsterInc\Swv;
 /**
  * Class that represents a standard file data in $_FILES.
  */
-class StandardFile implements FileInterface {
+class File implements FileInterface {
 
 	private string $name;
 	private int $size;
