@@ -11,9 +11,9 @@ class FormDataTree implements FormDataInterface {
 	 * Returns the values associated with a given field name.
 	 *
 	 * @param string $name Field name.
-	 * @return array Single dimension array of the values.
+	 * @return iterable Iterator of the values.
 	 */
-	public function get( string $name ): array {
+	public function get( string $name ): iterable {
 		$name_parts = dissolve_name( $name );
 
 		if ( empty( $name_parts ) ) {
@@ -38,9 +38,9 @@ class FormDataTree implements FormDataInterface {
 	 * Returns the file objects associated with a given field name.
 	 *
 	 * @param string $name Field name.
-	 * @return array Single dimension array of the StandardFile objects.
+	 * @return iterable Iterator of the FileInterface objects.
 	 */
-	public function getFiles( string $name ): array {
+	public function getFiles( string $name ): iterable {
 	}
 
 }

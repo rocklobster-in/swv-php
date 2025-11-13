@@ -12,17 +12,17 @@ interface FormDataInterface {
 	 * Returns the values associated with a given field name.
 	 *
 	 * @param string $name Field name.
-	 * @return array Single dimension array of the values.
+	 * @return iterable Iterator of the values.
 	 */
-	public function get( string $name ): array;
+	public function get( string $name ): iterable;
 
 
 	/**
 	 * Returns the file objects associated with a given field name.
 	 *
 	 * @param string $name Field name.
-	 * @return array Single dimension array of the values.
+	 * @return iterable Iterator of the file objects.
 	 */
-	public function getFiles( string $name ): array;
+	public function getFiles( string $name ): iterable;
 
 }
