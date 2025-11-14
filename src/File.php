@@ -27,6 +27,58 @@ class File implements FileInterface {
 
 
 	/**
+	 * Walks through an array and creates File objects if there are
+	 * necessary properties.
+	 *
+	 * @param mixed $array Where to walk.
+	 */
+	public static function walkToFindSelf( mixed $array ) {
+		if (
+			isset( $array['name'] ) and is_scalar( $array['name'] ) and
+			isset( $array['size'] ) and is_scalar( $array['size'] ) and
+			isset( $array['tmp_name'] ) and is_scalar( $array['tmp_name'] ) and
+			isset( $array['error'] ) and is_scalar( $array['error'] )
+		) {
+			return new self( [
+				'name' => $array['name'],
+				'size' => $array['size'],
+				'temporaryFilePath' => $array['tmp_name'],
+				'error' => $array['error'],
+			] );
+		}
+
+		if ( is_array( $array ) ) {
+			return array_map( __METHOD__, $array );
+		}
+	}
+
+
+	/**
+	 * Creates a tree structure based on the $_FILES superglobal. A terminal
+	 * node of the tree must be a File object.
+	 *
+	 * @return array Tree created based on $_FILES.
+	 */
+	public static function buildTreeFromSuperglobal(): array {
+		$output = [];
+
+		foreach ( $_FILES as $name => $props ) {
+			$output[ $name ] = [];
+
+			foreach ( $props as $key => $value ) {
+				$output[ $name ][] = scalar_to_map( $key, $value );
+			}
+
+			$output[ $name ] = array_replace_recursive( ...$output[ $name ] );
+
+			$output[ $name ] = self::walkToFindSelf( $output[ $name ] );
+		}
+
+		return $output;
+	}
+
+
+	/**
 	 * Returns the original name of the file on the client machine.
 	 */
 	public function name(): string {
