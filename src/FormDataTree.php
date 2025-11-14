@@ -41,6 +41,23 @@ class FormDataTree implements FormDataInterface {
 	 * @return iterable Iterator of the FileInterface objects.
 	 */
 	public function getFiles( string $name ): iterable {
+		$name_parts = dissolve_name( $name );
+
+		if ( empty( $name_parts ) ) {
+			return [];
+		}
+
+		$files_tree = File::buildTreeFromSuperglobal();
+
+		while ( $next = array_shift( $name_parts ) ) {
+			if ( isset( $files_tree[ $next ] ) ) {
+				$files_tree = $files_tree[ $next ];
+			} else {
+				return [];
+			}
+		}
+
+		return array_flatten( $files_tree );
 	}
 
 }
