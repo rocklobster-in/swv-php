@@ -14,7 +14,7 @@ interface FormDataInterface {
 	 * @param string $name Field name.
 	 * @return iterable Iterator of the values.
 	 */
-	public function get( string $name ): iterable;
+	public function getAll( string $name ): iterable;
 
 
 	/**
@@ -23,6 +23,6 @@ interface FormDataInterface {
 	 * @param string $name Field name.
 	 * @return iterable Iterator of the file objects.
 	 */
-	public function getFiles( string $name ): iterable;
+	public function getAllFiles( string $name ): iterable;
 
 }

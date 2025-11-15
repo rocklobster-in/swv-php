@@ -13,7 +13,7 @@ class FormDataTree implements FormDataInterface {
 	 * @param string $name Field name.
 	 * @return iterable Iterator of the values.
 	 */
-	public function get( string $name ): iterable {
+	public function getAll( string $name ): iterable {
 		$name_parts = dissolve_name( $name );
 
 		if ( empty( $name_parts ) ) {
@@ -40,7 +40,7 @@ class FormDataTree implements FormDataInterface {
 	 * @param string $name Field name.
 	 * @return iterable Iterator of the FileInterface objects.
 	 */
-	public function getFiles( string $name ): iterable {
+	public function getAllFiles( string $name ): iterable {
 		$name_parts = dissolve_name( $name );
 
 		if ( empty( $name_parts ) ) {
