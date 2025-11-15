@@ -3,7 +3,7 @@
 namespace RockLobsterInc\Swv;
 
 /**
- * Abstract class that represents the root of all SWV rules.
+ * Abstract class that represents the base for all SWV rules.
  */
 abstract class AbstractRule {
 

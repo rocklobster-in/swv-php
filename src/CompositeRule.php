@@ -3,7 +3,7 @@
 namespace RockLobsterInc\Swv;
 
 /**
- * Abstract class that represents the root of all composite-type SWV rules.
+ * Abstract class that represents the base for all composite-type SWV rules.
  */
 abstract class CompositeRule extends AbstractRule {
 
