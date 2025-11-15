@@ -8,22 +8,6 @@ namespace RockLobsterInc\Swv;
 abstract class AbstractRule {
 
 	/**
-	 * Properties of the rule.
-	 */
-	protected array $properties = array();
-
-
-	/**
-	 * Constructor.
-	 *
-	 * @param array $properties Properties of the rule.
-	 */
-	public function __construct( array $properties = [] ) {
-		$this->properties = $properties;
-	}
-
-
-	/**
 	 * Returns true if this rule matches the given context.
 	 *
 	 * @param array $context Context.
