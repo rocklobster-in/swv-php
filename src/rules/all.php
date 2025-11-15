@@ -8,7 +8,7 @@ class AllRule extends CompositeRule {
 
 	const RULE_NAME = 'all';
 
-	public function matches( $context ) {
+	public function matches( iterable $context ): bool {
 		if ( false === parent::matches( $context ) ) {
 			return false;
 		}
@@ -16,17 +16,13 @@ class AllRule extends CompositeRule {
 		return true;
 	}
 
-	public function validate( $context ) {
+	public function validate( FormDataInterface $form_data, iterable $context ) {
 		foreach ( $this->rules() as $rule ) {
 			if ( $rule->matches( $context ) ) {
-				$result = $rule->validate( $context );
-
-				if ( is_wp_error( $result ) ) {
-					if ( $result->get_error_message() ) {
-						return $result;
-					} else {
-						return $this->create_error();
-					}
+				try {
+					$rule->validate( $form_data, $context );
+				} catch ( Invalidity $error ) {
+					throw $error;
 				}
 			}
 		}
