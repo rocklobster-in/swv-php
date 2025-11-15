@@ -10,7 +10,7 @@ abstract class AbstractRule {
 	/**
 	 * Returns true if this rule matches the given context.
 	 *
-	 * @param array $context Context.
+	 * @param iterable $context Context.
 	 */
 	public function matches( iterable $context ): bool {
 		return true;
@@ -18,10 +18,10 @@ abstract class AbstractRule {
 
 
 	/**
-	 * Validates with this rule's logic.
+	 * Validates the form data according to the logic defined by this rule.
 	 *
 	 * @param FormDataInterface $form_data Form data.
-	 * @param array $context Context.
+	 * @param iterable $context Context.
 	 */
 	public function validate( FormDataInterface $form_data, iterable $context ) {
 		return true;
