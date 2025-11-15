@@ -75,13 +75,24 @@ function exclude_blank( array $input ): array {
  * @return array Single dimension array of name components.
  */
 function dissolve_name( string $name ): array {
+	$name = trim( $name );
+
+	if ( '' === $name ) {
+		return [];
+	}
+
 	$first_bracket = strpos( $name, '[' );
 
 	if ( false === $first_bracket ) {
 		return [ $name ];
 	}
 
-	$core = substr( $name, 0, $first_bracket );
+	$core = trim( substr( $name, 0, $first_bracket ) );
+
+	if ( '' === $core ) {
+		return [];
+	}
+
 	$dimensions = substr( $name, $first_bracket );
 
 	preg_match_all( '/\[(.*?)\]/', $dimensions, $matches );
