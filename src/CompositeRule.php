@@ -24,4 +24,14 @@ abstract class CompositeRule extends AbstractRule {
 		return true;
 	}
 
+
+	/**
+	 * Returns an iterator of sub-rules.
+	 */
+	public function rules(): iterable {
+		foreach ( $this->rules as $rule ) {
+			yield $rule;
+		}
+	}
+
 }
