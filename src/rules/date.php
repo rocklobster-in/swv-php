@@ -3,32 +3,80 @@
 namespace RockLobsterInc\Swv\Rules;
 
 use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
+use function RockLobsterInc\Swv\{ strip_whitespaces, exclude_blank };
 
-class DateRule extends AbstractRule {
+final class DateRule extends AbstractRule {
 
 	const RULE_NAME = 'date';
 
-	public function matches( $context ) {
+	public string $field;
+	public string $error;
+
+
+	/**
+	 * Constructor.
+	 *
+	 * @param iterable $properties Rule properties.
+	 */
+	public function __construct( iterable $properties = [] ) {
+		$this->field = $properties[ 'field' ] ?? '';
+		$this->error = $properties[ 'error' ] ?? '';
+	}
+
+
+	/**
+	 * Returns true if the given string is a valid Gregorian date in
+	 * the YYYY-MM-DD format.
+	 *
+	 * @param string $value String to check.
+	 */
+	public static function isDate( string $value ): bool {
+		$result = preg_match(
+			'/^([0-9]{4})-([0-9]{2})-([0-9]{2})$/',
+			$value,
+			$matches
+		);
+
+		if ( ! $result ) {
+			return false;
+		}
+
+		return checkdate( $matches[ 2 ], $matches[ 3 ], $matches[ 1 ] );
+	}
+
+
+	/**
+	 * Returns true if this rule matches the given context.
+	 *
+	 * @param iterable $context Context.
+	 */
+	public function matches( iterable $context ): bool {
 		if ( false === parent::matches( $context ) ) {
 			return false;
 		}
 
-		if ( empty( $context['text'] ) ) {
+		if ( empty( $context[ 'text' ] ) ) {
 			return false;
 		}
 
 		return true;
 	}
 
-	public function validate( $context ) {
-		$input = $this->get_default_input();
-		$input = wpcf7_array_flatten( $input );
-		$input = wpcf7_strip_whitespaces( $input );
-		$input = wpcf7_exclude_blank( $input );
 
-		foreach ( $input as $i ) {
-			if ( ! wpcf7_is_date( $i ) ) {
-				return $this->create_error();
+	/**
+	 * Validates the form data according to the logic defined by this rule.
+	 *
+	 * @param FormDataInterface $form_data Form data.
+	 * @param iterable $context Context.
+	 */
+	public function validate( FormDataInterface $form_data, iterable $context ) {
+		$input = $form_data->getAll( $this->field );
+		$input = strip_whitespaces( $input );
+		$input = exclude_blank( $input );
+
+		foreach ( $input as $value ) {
+			if ( ! self::isDate( $value ) ) {
+				throw new Invalidity( $this );
 			}
 		}
 
