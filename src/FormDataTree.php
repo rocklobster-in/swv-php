@@ -57,7 +57,12 @@ class FormDataTree implements FormDataInterface {
 			}
 		}
 
-		return array_flatten( $files_tree );
+		return array_values( array_filter(
+			array_flatten( $files_tree ),
+			static function ( $item ) {
+				return $item instanceof FileInterface;
+			}
+		) );
 	}
 
 }
