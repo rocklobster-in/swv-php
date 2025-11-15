@@ -48,7 +48,7 @@ class File implements FileInterface {
 		}
 
 		if ( is_array( $array ) ) {
-			return array_map( __METHOD__, $array );
+			return array_map( 'self::walkToFindSelf', $array );
 		}
 	}
 
@@ -63,15 +63,15 @@ class File implements FileInterface {
 		$output = [];
 
 		foreach ( $_FILES as $name => $props ) {
-			$output[ $name ] = [];
+			$in_process_array = [];
 
 			foreach ( $props as $key => $value ) {
-				$output[ $name ][] = scalar_to_map( $key, $value );
+				$in_process_array[] = scalar_to_map( $key, $value );
 			}
 
-			$output[ $name ] = array_replace_recursive( ...$output[ $name ] );
+			$in_process_array = array_replace_recursive( ...$in_process_array );
 
-			$output[ $name ] = self::walkToFindSelf( $output[ $name ] );
+			$output[ $name ] = self::walkToFindSelf( $in_process_array );
 		}
 
 		return $output;
