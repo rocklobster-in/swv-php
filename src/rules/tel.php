@@ -4,7 +4,7 @@ namespace RockLobsterInc\Swv\Rules;
 
 use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
 
-class TelRule extends AbstractRule {
+final class TelRule extends AbstractRule {
 
 	const RULE_NAME = 'tel';
 

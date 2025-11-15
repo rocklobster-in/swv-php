@@ -4,7 +4,7 @@ namespace RockLobsterInc\Swv\Rules;
 
 use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
 
-class MinLengthRule extends AbstractRule {
+final class MinLengthRule extends AbstractRule {
 
 	const RULE_NAME = 'minlength';
 

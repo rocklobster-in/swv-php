@@ -4,7 +4,7 @@ namespace RockLobsterInc\Swv\Rules;
 
 use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
 
-class MinDateRule extends AbstractRule {
+final class MinDateRule extends AbstractRule {
 
 	const RULE_NAME = 'mindate';
 

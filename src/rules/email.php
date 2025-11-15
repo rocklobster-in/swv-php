@@ -4,7 +4,7 @@ namespace RockLobsterInc\Swv\Rules;
 
 use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
 
-class EmailRule extends AbstractRule {
+final class EmailRule extends AbstractRule {
 
 	const RULE_NAME = 'email';
 

@@ -4,7 +4,7 @@ namespace RockLobsterInc\Swv\Rules;
 
 use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
 
-class TimeRule extends AbstractRule {
+final class TimeRule extends AbstractRule {
 
 	const RULE_NAME = 'time';
 

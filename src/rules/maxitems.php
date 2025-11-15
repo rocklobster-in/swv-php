@@ -4,7 +4,7 @@ namespace RockLobsterInc\Swv\Rules;
 
 use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
 
-class MaxItemsRule extends AbstractRule {
+final class MaxItemsRule extends AbstractRule {
 
 	const RULE_NAME = 'maxitems';
 

@@ -4,7 +4,7 @@ namespace RockLobsterInc\Swv\Rules;
 
 use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
 
-class DayofweekRule extends AbstractRule {
+final class DayofweekRule extends AbstractRule {
 
 	const RULE_NAME = 'dayofweek';
 

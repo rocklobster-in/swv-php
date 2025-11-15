@@ -4,7 +4,7 @@ namespace RockLobsterInc\Swv\Rules;
 
 use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
 
-class NumberRule extends AbstractRule {
+final class NumberRule extends AbstractRule {
 
 	const RULE_NAME = 'number';
 

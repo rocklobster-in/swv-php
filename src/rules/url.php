@@ -4,7 +4,7 @@ namespace RockLobsterInc\Swv\Rules;
 
 use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
 
-class URLRule extends AbstractRule {
+final class URLRule extends AbstractRule {
 
 	const RULE_NAME = 'url';
 

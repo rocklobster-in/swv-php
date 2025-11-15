@@ -4,7 +4,7 @@ namespace RockLobsterInc\Swv\Rules;
 
 use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
 
-class MaxDateRule extends AbstractRule {
+final class MaxDateRule extends AbstractRule {
 
 	const RULE_NAME = 'maxdate';
 

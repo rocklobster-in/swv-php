@@ -4,7 +4,7 @@ namespace RockLobsterInc\Swv\Rules;
 
 use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
 
-class EnumRule extends AbstractRule {
+final class EnumRule extends AbstractRule {
 
 	const RULE_NAME = 'enum';
 
