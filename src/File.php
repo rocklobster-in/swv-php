@@ -60,7 +60,11 @@ class File implements FileInterface {
 	 * @return array Tree created based on $_FILES.
 	 */
 	public static function buildTreeFromSuperglobal(): array {
-		$output = [];
+		static $output = [];
+
+		if ( ! empty( $output ) ) {
+			return $output;
+		}
 
 		foreach ( $_FILES as $name => $props ) {
 			$in_process_array = [];
