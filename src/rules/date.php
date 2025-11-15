@@ -70,11 +70,11 @@ final class DateRule extends AbstractRule {
 	 * @param iterable $context Context.
 	 */
 	public function validate( FormDataInterface $form_data, iterable $context ) {
-		$input = $form_data->getAll( $this->field );
-		$input = strip_whitespaces( $input );
-		$input = exclude_blank( $input );
+		$values = $form_data->getAll( $this->field );
+		$values = strip_whitespaces( $values );
+		$values = exclude_blank( $values );
 
-		foreach ( $input as $value ) {
+		foreach ( $values as $value ) {
 			if ( ! self::isDate( $value ) ) {
 				throw new Invalidity( $this );
 			}
