@@ -11,12 +11,12 @@ namespace RockLobsterInc\Swv;
  */
 function array_flatten( mixed $input ): array {
 	if ( ! is_array( $input ) ) {
-		return array( $input );
+		return [ $input ];
 	}
 
 	return array_reduce( $input, static function ( $carry, $item ) {
 		return array_merge( $carry, array_flatten( $item ) );
-	}, array() );
+	}, [] );
 }
 
 
@@ -50,6 +50,21 @@ function strip_whitespaces( string|array $input ): string|array {
 
 
 /**
+ * Converts all newline characters into line feed (LF).
+ *
+ * @param string|array $input Input text or array of text.
+ * @return string|array Output text or array of text.
+ */
+function canonicalize_newline( string|array $input ): string|array {
+	if ( is_array( $input ) ) {
+		return array_map( 'canonicalize_newline', $input );
+	}
+
+	return str_replace( [ "\r\n", "\r", "\n" ], "\n", $input );
+}
+
+
+/**
  * Excludes unset or blank text values from the given array.
  *
  * @param array $input The array.
@@ -64,7 +79,7 @@ function exclude_blank( array $input ): array {
 		}
 
 		return $carry;
-	}, array() );
+	}, [] );
 }
 
 
