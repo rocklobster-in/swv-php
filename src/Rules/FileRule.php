@@ -8,51 +8,215 @@ final class FileRule extends AbstractRule {
 
 	const RULE_NAME = 'file';
 
-	public function matches( $context ) {
+	public string $field;
+	public string $error;
+	public array $accept;
+
+
+	/**
+	 * Constructor.
+	 *
+	 * @param iterable $properties Rule properties.
+	 */
+	public function __construct( iterable $properties = [] ) {
+		$this->field = $properties[ 'field' ] ?? '';
+		$this->error = $properties[ 'error' ] ?? '';
+		$this->accept = $properties[ 'accept' ] ?? [];
+	}
+
+
+	/**
+	 * Retrieves the list of mime types and file extensions.
+	 *
+	 * @link https://developer.wordpress.org/reference/functions/wp_get_mime_types/
+	 *
+	 * @return array Array of mime types keyed by the file extension regex
+	 *               corresponding to those types.
+	 */
+	public static function getMimeTypes(): array {
+		return [
+			'jpg|jpeg|jpe' => 'image/jpeg',
+			'gif' => 'image/gif',
+			'png' => 'image/png',
+			'bmp' => 'image/bmp',
+			'tiff|tif' => 'image/tiff',
+			'webp' => 'image/webp',
+			'avif' => 'image/avif',
+			'ico' => 'image/x-icon',
+			'heic' => 'image/heic',
+			'heif' => 'image/heif',
+			'heics' => 'image/heic-sequence',
+			'heifs' => 'image/heif-sequence',
+			'asf|asx' => 'video/x-ms-asf',
+			'wmv' => 'video/x-ms-wmv',
+			'wmx' => 'video/x-ms-wmx',
+			'wm' => 'video/x-ms-wm',
+			'avi' => 'video/avi',
+			'divx' => 'video/divx',
+			'flv' => 'video/x-flv',
+			'mov|qt' => 'video/quicktime',
+			'mpeg|mpg|mpe' => 'video/mpeg',
+			'mp4|m4v' => 'video/mp4',
+			'ogv' => 'video/ogg',
+			'webm' => 'video/webm',
+			'mkv' => 'video/x-matroska',
+			'3gp|3gpp' => 'video/3gpp',
+			'3g2|3gp2' => 'video/3gpp2',
+			'txt|asc|c|cc|h|srt' => 'text/plain',
+			'csv' => 'text/csv',
+			'tsv' => 'text/tab-separated-values',
+			'ics' => 'text/calendar',
+			'rtx' => 'text/richtext',
+			'css' => 'text/css',
+			'htm|html' => 'text/html',
+			'vtt' => 'text/vtt',
+			'dfxp' => 'application/ttaf+xml',
+			'mp3|m4a|m4b' => 'audio/mpeg',
+			'aac' => 'audio/aac',
+			'ra|ram' => 'audio/x-realaudio',
+			'wav|x-wav' => 'audio/wav',
+			'ogg|oga' => 'audio/ogg',
+			'flac' => 'audio/flac',
+			'mid|midi' => 'audio/midi',
+			'wma' => 'audio/x-ms-wma',
+			'wax' => 'audio/x-ms-wax',
+			'mka' => 'audio/x-matroska',
+			'rtf' => 'application/rtf',
+			'js' => 'application/javascript',
+			'pdf' => 'application/pdf',
+			'swf' => 'application/x-shockwave-flash',
+			'class' => 'application/java',
+			'tar' => 'application/x-tar',
+			'zip' => 'application/zip',
+			'gz|gzip' => 'application/x-gzip',
+			'rar' => 'application/rar',
+			'7z' => 'application/x-7z-compressed',
+			'exe' => 'application/x-msdownload',
+			'psd' => 'application/octet-stream',
+			'xcf' => 'application/octet-stream',
+			'doc' => 'application/msword',
+			'pot|pps|ppt' => 'application/vnd.ms-powerpoint',
+			'wri' => 'application/vnd.ms-write',
+			'xla|xls|xlt|xlw' => 'application/vnd.ms-excel',
+			'mdb' => 'application/vnd.ms-access',
+			'mpp' => 'application/vnd.ms-project',
+			'docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+			'docm' => 'application/vnd.ms-word.document.macroEnabled.12',
+			'dotx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.template',
+			'dotm' => 'application/vnd.ms-word.template.macroEnabled.12',
+			'xlsx' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+			'xlsm' => 'application/vnd.ms-excel.sheet.macroEnabled.12',
+			'xlsb' => 'application/vnd.ms-excel.sheet.binary.macroEnabled.12',
+			'xltx' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.template',
+			'xltm' => 'application/vnd.ms-excel.template.macroEnabled.12',
+			'xlam' => 'application/vnd.ms-excel.addin.macroEnabled.12',
+			'pptx' => 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+			'pptm' => 'application/vnd.ms-powerpoint.presentation.macroEnabled.12',
+			'ppsx' => 'application/vnd.openxmlformats-officedocument.presentationml.slideshow',
+			'ppsm' => 'application/vnd.ms-powerpoint.slideshow.macroEnabled.12',
+			'potx' => 'application/vnd.openxmlformats-officedocument.presentationml.template',
+			'potm' => 'application/vnd.ms-powerpoint.template.macroEnabled.12',
+			'ppam' => 'application/vnd.ms-powerpoint.addin.macroEnabled.12',
+			'sldx' => 'application/vnd.openxmlformats-officedocument.presentationml.slide',
+			'sldm' => 'application/vnd.ms-powerpoint.slide.macroEnabled.12',
+			'onetoc|onetoc2|onetmp|onepkg' => 'application/onenote',
+			'oxps' => 'application/oxps',
+			'xps' => 'application/vnd.ms-xpsdocument',
+			'odt' => 'application/vnd.oasis.opendocument.text',
+			'odp' => 'application/vnd.oasis.opendocument.presentation',
+			'ods' => 'application/vnd.oasis.opendocument.spreadsheet',
+			'odg' => 'application/vnd.oasis.opendocument.graphics',
+			'odc' => 'application/vnd.oasis.opendocument.chart',
+			'odb' => 'application/vnd.oasis.opendocument.database',
+			'odf' => 'application/vnd.oasis.opendocument.formula',
+			'wp|wpd' => 'application/wordperfect',
+			'key' => 'application/vnd.apple.keynote',
+			'numbers' => 'application/vnd.apple.numbers',
+			'pages' => 'application/vnd.apple.pages',
+		];
+	}
+
+
+	/**
+	 * Converts a MIME type string to an array of corresponding file extensions.
+	 *
+	 * @param string $mime MIME type. Wildcard (*) is available for the subtype.
+	 * @return array Corresponding file extensions.
+	 */
+	public static function convertMimeToExt( string $mime ): array {
+		$results = array();
+
+		if ( preg_match( '%^([a-z]+)/([*]|[a-z0-9.+-]+)$%i', $mime, $matches ) ) {
+			foreach ( self::getMimeTypes() as $extensions => $mime_type ) {
+				if (
+					$mime_type === $matches[ 0 ] or
+					0 === strpos( $mime_type, $matches[ 1 ] . '/' ) and
+					'*' === $matches[ 2 ]
+				) {
+					$results = array_merge( $results, explode( '|', $extensions ) );
+				}
+			}
+		}
+
+		return array_values( array_unique( $results ) );
+	}
+
+
+	/**
+	 * Returns true if this rule matches the given context.
+	 *
+	 * @param iterable $context Context.
+	 */
+	public function matches( iterable $context ): bool {
 		if ( false === parent::matches( $context ) ) {
 			return false;
 		}
 
-		if ( empty( $context['file'] ) ) {
+		if ( empty( $context[ 'file' ] ) ) {
 			return false;
 		}
 
 		return true;
 	}
 
-	public function validate( $context ) {
-		$input = $this->get_default_upload()->name ?? '';
-		$input = wpcf7_array_flatten( $input );
-		$input = wpcf7_exclude_blank( $input );
+
+	/**
+	 * Validates the form data according to the logic defined by this rule.
+	 *
+	 * @param FormDataInterface $form_data Form data.
+	 * @param iterable $context Context.
+	 */
+	public function validate( FormDataInterface $form_data, iterable $context ) {
+		$files = $form_data->getAllFiles( $this->field );
 
 		$acceptable_filetypes = array();
 
-		foreach ( (array) $this->get_property( 'accept' ) as $accept ) {
+		foreach ( $this->accept as $accept ) {
 			if ( preg_match( '/^\.[a-z0-9]+$/i', $accept ) ) {
-				$acceptable_filetypes[] = strtolower( $accept );
+				$acceptable_filetypes[] = $accept;
 			} else {
-				foreach ( wpcf7_convert_mime_to_ext( $accept ) as $ext ) {
-					$acceptable_filetypes[] = sprintf(
-						'.%s',
-						strtolower( trim( $ext, ' .' ) )
-					);
+				foreach ( self::convertMimeToExt( $accept ) as $extension ) {
+					$acceptable_filetypes[] = sprintf( '.%s', trim( $extension, ' .' ) );
 				}
 			}
 		}
 
+		$acceptable_filetypes = array_map( 'strtolower', $acceptable_filetypes );
 		$acceptable_filetypes = array_unique( $acceptable_filetypes );
 
-		foreach ( $input as $i ) {
-			$last_period_pos = strrpos( $i, '.' );
+		foreach ( $files as $file ) {
+			$file_name = $file->name();
 
-			if ( false === $last_period_pos ) { // no period
-				return $this->create_error();
+			$last_period_pos = strrpos( $file_name, '.' );
+
+			if ( false === $last_period_pos ) { // No period.
+				throw new Invalidity( $this );
 			}
 
-			$suffix = strtolower( substr( $i, $last_period_pos ) );
+			$suffix = strtolower( substr( $file_name, $last_period_pos ) );
 
 			if ( ! in_array( $suffix, $acceptable_filetypes, true ) ) {
-				return $this->create_error();
+				throw new Invalidity( $this );
 			}
 		}
 
