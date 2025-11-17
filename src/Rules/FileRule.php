@@ -113,6 +113,10 @@ final class FileRule extends AbstractRule {
 			=> [ 'tar' ],
 		'application/zip'
 			=> [ 'zip' ],
+		'audio/3gpp'
+			=> [ '3gp', '3gpp' ],
+		'audio/3gpp2'
+			=> [ '3g2', '3gp2' ],
 		'audio/aac'
 			=> [ 'aac' ],
 		'audio/flac'
@@ -142,11 +146,11 @@ final class FileRule extends AbstractRule {
 		'image/heic'
 			=> [ 'heic' ],
 		'image/heic-sequence'
-			=> [ 'heics' ],
+			=> [ 'heic', 'heics' ],
 		'image/heif'
-			=> [ 'heif' ],
+			=> [ 'heic', 'heif' ],
 		'image/heif-sequence'
-			=> [ 'heifs' ],
+			=> [ 'heic', 'heifs' ],
 		'image/jpeg'
 			=> [ 'jpg', 'jpeg', 'jpe' ],
 		'image/png'
