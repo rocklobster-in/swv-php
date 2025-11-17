@@ -9,6 +9,10 @@ final class DayofweekRule extends AbstractRule {
 
 	const RULE_NAME = 'dayofweek';
 
+
+	/**
+	 * Rule properties.
+	 */
 	public string $field;
 	public string $error;
 	public array $accept;

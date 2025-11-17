@@ -9,6 +9,10 @@ final class EnumRule extends AbstractRule {
 
 	const RULE_NAME = 'enum';
 
+
+	/**
+	 * Rule properties.
+	 */
 	public string $field;
 	public string $error;
 	public array $accept;

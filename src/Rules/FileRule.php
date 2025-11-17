@@ -210,6 +210,9 @@ final class FileRule extends AbstractRule {
 	];
 
 
+	/**
+	 * Rule properties.
+	 */
 	public string $field;
 	public string $error;
 	public array $accept;

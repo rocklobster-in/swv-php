@@ -9,6 +9,10 @@ final class DateRule extends AbstractRule {
 
 	const RULE_NAME = 'date';
 
+
+	/**
+	 * Rule properties.
+	 */
 	public string $field;
 	public string $error;
 

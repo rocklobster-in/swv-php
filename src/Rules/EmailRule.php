@@ -9,6 +9,10 @@ final class EmailRule extends AbstractRule {
 
 	const RULE_NAME = 'email';
 
+
+	/**
+	 * Rule properties.
+	 */
 	public string $field;
 	public string $error;
 

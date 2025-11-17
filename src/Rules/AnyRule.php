@@ -8,6 +8,10 @@ final class AnyRule extends CompositeRule {
 
 	const RULE_NAME = 'any';
 
+
+	/**
+	 * Rule properties.
+	 */
 	public string $error;
 
 
