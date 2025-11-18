@@ -3,7 +3,7 @@
 namespace RockLobsterInc\Swv\Rules;
 
 use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
-use function RockLobsterInc\Swv\{ strip_whitespaces, exclude_blank, count_code_units };
+use function RockLobsterInc\Swv\{ count_code_units };
 
 final class MinLengthRule extends AbstractRule {
 
@@ -56,8 +56,6 @@ final class MinLengthRule extends AbstractRule {
 	 */
 	public function validate( FormDataInterface $form_data, iterable $context ) {
 		$values = $form_data->getAll( $this->field );
-		$values = strip_whitespaces( $values );
-		$values = exclude_blank( $values );
 
 		if ( ! is_numeric( $this->threshold ) ) {
 			return true;

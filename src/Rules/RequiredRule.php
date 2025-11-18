@@ -3,7 +3,6 @@
 namespace RockLobsterInc\Swv\Rules;
 
 use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
-use function RockLobsterInc\Swv\{ strip_whitespaces, exclude_blank };
 
 final class RequiredRule extends AbstractRule {
 
@@ -54,8 +53,6 @@ final class RequiredRule extends AbstractRule {
 	 */
 	public function validate( FormDataInterface $form_data, iterable $context ) {
 		$values = $form_data->getAll( $this->field );
-		$values = strip_whitespaces( $values );
-		$values = exclude_blank( $values );
 
 		if ( empty( $values ) ) {
 			throw new Invalidity( $this );

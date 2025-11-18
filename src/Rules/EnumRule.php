@@ -3,7 +3,7 @@
 namespace RockLobsterInc\Swv\Rules;
 
 use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
-use function RockLobsterInc\Swv\{ strip_whitespaces, exclude_blank, canonicalize_newline };
+use function RockLobsterInc\Swv\{ canonicalize_newline };
 
 final class EnumRule extends AbstractRule {
 
@@ -56,8 +56,6 @@ final class EnumRule extends AbstractRule {
 	 */
 	public function validate( FormDataInterface $form_data, iterable $context ) {
 		$values = $form_data->getAll( $this->field );
-		$values = strip_whitespaces( $values );
-		$values = exclude_blank( $values );
 
 		$acceptable_values = canonicalize_newline( $this->accept );
 

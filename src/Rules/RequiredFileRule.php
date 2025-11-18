@@ -3,7 +3,6 @@
 namespace RockLobsterInc\Swv\Rules;
 
 use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
-use function RockLobsterInc\Swv\{ strip_whitespaces, exclude_blank };
 
 final class RequiredFileRule extends AbstractRule {
 
@@ -59,8 +58,6 @@ final class RequiredFileRule extends AbstractRule {
 			$carry[] = $item->temporaryFilePath();
 			return $carry;
 		}, [] );
-
-		$tmp_names = exclude_blank( $tmp_names );
 
 		if ( empty( $tmp_names ) ) {
 			throw new Invalidity( $this );
