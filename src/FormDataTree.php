@@ -30,7 +30,11 @@ class FormDataTree implements FormDataInterface {
 			}
 		}
 
-		return array_flatten( $posted_value );
+		$posted_value = array_flatten( $posted_value );
+		$posted_value = strip_whitespaces( $posted_value );
+		$posted_value = exclude_blank( $posted_value );
+
+		return $posted_value;
 	}
 
 
@@ -60,7 +64,12 @@ class FormDataTree implements FormDataInterface {
 		return array_values( array_filter(
 			array_flatten( $files_tree ),
 			static function ( $item ) {
-				return $item instanceof FileInterface;
+				return (
+					$item instanceof FileInterface &&
+					'' !== $item->name() &&
+					0 !== $item->size() &&
+					'' !== $item->temporaryFilePath()
+				);
 			}
 		) );
 	}
