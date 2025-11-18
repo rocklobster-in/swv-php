@@ -3,46 +3,83 @@
 namespace RockLobsterInc\Swv\Rules;
 
 use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
+use function RockLobsterInc\Swv\{ strip_whitespaces, exclude_blank, count_code_units };
 
 final class MinLengthRule extends AbstractRule {
 
 	const RULE_NAME = 'minlength';
 
-	public function matches( $context ) {
+
+	/**
+	 * Rule properties.
+	 */
+	public string $field;
+	public string $error;
+	public string $threshold;
+
+
+	/**
+	 * Constructor.
+	 *
+	 * @param iterable $properties Rule properties.
+	 */
+	public function __construct( iterable $properties = [] ) {
+		$this->field = $properties[ 'field' ] ?? '';
+		$this->error = $properties[ 'error' ] ?? '';
+		$this->threshold = $properties[ 'threshold' ] ?? '';
+	}
+
+
+	/**
+	 * Returns true if this rule matches the given context.
+	 *
+	 * @param iterable $context Context.
+	 */
+	public function matches( iterable $context ): bool {
 		if ( false === parent::matches( $context ) ) {
 			return false;
 		}
 
-		if ( empty( $context['text'] ) ) {
+		if ( empty( $context[ 'text' ] ) ) {
 			return false;
 		}
 
 		return true;
 	}
 
-	public function validate( $context ) {
-		$input = $this->get_default_input();
-		$input = wpcf7_array_flatten( $input );
-		$input = wpcf7_strip_whitespaces( $input );
-		$input = wpcf7_exclude_blank( $input );
 
-		if ( empty( $input ) ) {
+	/**
+	 * Validates the form data according to the logic defined by this rule.
+	 *
+	 * @param FormDataInterface $form_data Form data.
+	 * @param iterable $context Context.
+	 */
+	public function validate( FormDataInterface $form_data, iterable $context ) {
+		$values = $form_data->getAll( $this->field );
+		$values = strip_whitespaces( $values );
+		$values = exclude_blank( $values );
+
+		if ( ! is_numeric( $this->threshold ) ) {
 			return true;
 		}
 
 		$total = 0;
 
-		foreach ( $input as $i ) {
-			$total += wpcf7_count_code_units( $i );
+		foreach ( $values as $value ) {
+			$length = count_code_units( $value );
+
+			if ( false === $length ) { // mbstring is not loaded.
+				return true;
+			}
+
+			$total += $length;
 		}
 
-		$threshold = (int) $this->get_property( 'threshold' );
-
-		if ( $threshold <= $total ) {
-			return true;
-		} else {
-			return $this->create_error();
+		if ( $total < (int) $this->threshold ) {
+			throw new Invalidity( $this );
 		}
+
+		return true;
 	}
 
 }
