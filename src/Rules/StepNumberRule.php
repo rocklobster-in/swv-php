@@ -3,38 +3,73 @@
 namespace RockLobsterInc\Swv\Rules;
 
 use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
+use function RockLobsterInc\Swv\{ strip_whitespaces, exclude_blank };
 
 final class StepNumberRule extends AbstractRule {
 
 	const RULE_NAME = 'stepnumber';
 
-	public function matches( $context ) {
+
+	/**
+	 * Rule properties.
+	 */
+	public string $field;
+	public string $error;
+	public string $base;
+	public string $interval;
+
+
+	/**
+	 * Constructor.
+	 *
+	 * @param iterable $properties Rule properties.
+	 */
+	public function __construct( iterable $properties = [] ) {
+		$this->field = $properties[ 'field' ] ?? '';
+		$this->error = $properties[ 'error' ] ?? '';
+		$this->base = $properties[ 'base' ] ?? '';
+		$this->interval = $properties[ 'interval' ] ?? '';
+	}
+
+
+	/**
+	 * Returns true if this rule matches the given context.
+	 *
+	 * @param iterable $context Context.
+	 */
+	public function matches( iterable $context ): bool {
 		if ( false === parent::matches( $context ) ) {
 			return false;
 		}
 
-		if ( empty( $context['text'] ) ) {
+		if ( empty( $context[ 'text' ] ) ) {
 			return false;
 		}
 
 		return true;
 	}
 
-	public function validate( $context ) {
-		$input = $this->get_default_input();
-		$input = wpcf7_array_flatten( $input );
-		$input = wpcf7_strip_whitespaces( $input );
-		$input = wpcf7_exclude_blank( $input );
 
-		$base = floatval( $this->get_property( 'base' ) );
-		$interval = floatval( $this->get_property( 'interval' ) );
+	/**
+	 * Validates the form data according to the logic defined by this rule.
+	 *
+	 * @param FormDataInterface $form_data Form data.
+	 * @param iterable $context Context.
+	 */
+	public function validate( FormDataInterface $form_data, iterable $context ) {
+		$values = $form_data->getAll( $this->field );
+		$values = strip_whitespaces( $values );
+		$values = exclude_blank( $values );
+
+		$base = floatval( $this->base );
+		$interval = floatval( $this->interval );
 
 		if ( ! ( 0 < $interval ) ) {
 			return true;
 		}
 
-		foreach ( $input as $i ) {
-			$remainder = fmod( floatval( $i ) - $base, $interval );
+		foreach ( $values as $value ) {
+			$remainder = fmod( floatval( $value ) - $base, $interval );
 
 			if (
 				0.0 === round( abs( $remainder ), 6 ) or
@@ -43,7 +78,7 @@ final class StepNumberRule extends AbstractRule {
 				continue;
 			}
 
-			return $this->create_error();
+			throw new Invalidity( $this );
 		}
 
 		return true;
