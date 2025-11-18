@@ -289,6 +289,10 @@ final class FileRule extends AbstractRule {
 	public function validate( FormDataInterface $form_data, iterable $context ) {
 		$files = $form_data->getAllFiles( $this->field );
 
+		if ( empty( $files ) ) {
+			return true;
+		}
+
 		$acceptable_filetypes = array();
 
 		foreach ( $this->accept as $accept ) {
