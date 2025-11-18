@@ -54,12 +54,7 @@ final class RequiredFileRule extends AbstractRule {
 	public function validate( FormDataInterface $form_data, iterable $context ) {
 		$files = $form_data->getAllFiles( $this->field );
 
-		$tmp_names = array_reduce( $files, static function ( $carry, $item ) {
-			$carry[] = $item->temporaryFilePath();
-			return $carry;
-		}, [] );
-
-		if ( empty( $tmp_names ) ) {
+		if ( empty( $files ) ) {
 			throw new Invalidity( $this );
 		}
 
