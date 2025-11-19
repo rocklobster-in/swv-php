@@ -81,4 +81,20 @@ final class StepNumberRule extends AbstractRule {
 		return true;
 	}
 
+
+	/**
+	 * Returns an array that represents the rule properties.
+	 *
+	 * @return iterable Array of rule properties.
+	 */
+	public function toArray(): iterable {
+		return [
+			'rule' => self::RULE_NAME,
+			'field' => $this->field,
+			'error' => $this->error,
+			'base' => $this->base,
+			'interval' => $this->interval,
+		];
+	}
+
 }

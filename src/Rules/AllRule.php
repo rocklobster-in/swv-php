@@ -12,6 +12,7 @@ final class AllRule extends CompositeRule {
 	/**
 	 * Rule properties.
 	 */
+	public string $field;
 	public string $error;
 
 
@@ -21,6 +22,7 @@ final class AllRule extends CompositeRule {
 	 * @param iterable $properties Rule properties.
 	 */
 	public function __construct( iterable $properties = [] ) {
+		$this->field = $properties[ 'field' ] ?? '';
 		$this->error = $properties[ 'error' ] ?? '';
 	}
 
@@ -61,6 +63,27 @@ final class AllRule extends CompositeRule {
 		}
 
 		return true;
+	}
+
+
+	/**
+	 * Returns an array that represents the rule properties.
+	 *
+	 * @return iterable Array of rule properties.
+	 */
+	public function toArray(): iterable {
+		$rules = [];
+
+		foreach ( $this->rules() as $rule ) {
+			$rules[] = $rule->toArray();
+		}
+
+		return [
+			'rule' => self::RULE_NAME,
+			'field' => $this->field,
+			'error' => $this->error,
+			'rules' => $rules,
+		];
 	}
 
 }

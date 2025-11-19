@@ -27,4 +27,14 @@ abstract class AbstractRule {
 		return true;
 	}
 
+
+	/**
+	 * Returns an array that represents the rule properties.
+	 *
+	 * @return iterable Array of rule properties.
+	 */
+	public function toArray(): iterable {
+		return [];
+	}
+
 }
