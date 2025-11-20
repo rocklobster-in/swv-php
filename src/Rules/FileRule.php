@@ -237,7 +237,7 @@ final class FileRule extends AbstractRule {
 	 * @return array Corresponding file extensions.
 	 */
 	public static function convertMimeToExt( string $mime ): array {
-		$results = array();
+		$results = [];
 
 		if ( preg_match( '%^([a-z]+)/([*]|[a-z0-9.+-]+)$%i', $mime, $matches ) ) {
 			$maintype = $matches[ 1 ];
@@ -293,7 +293,7 @@ final class FileRule extends AbstractRule {
 			return true;
 		}
 
-		$acceptable_filetypes = array();
+		$acceptable_filetypes = [];
 
 		foreach ( $this->accept as $accept ) {
 			if ( preg_match( '/^\.[a-z0-9]+$/i', $accept ) ) {
