@@ -56,7 +56,7 @@ final class MinDateRule extends AbstractRule {
 	public function validate( FormDataTree $form_data, iterable $context ) {
 		$values = $form_data->getAll( $this->field );
 
-		if ( ! DateRule::isDate( $this->threshold ) ) {
+		if ( empty( $values ) or ! DateRule::isDate( $this->threshold ) ) {
 			return true;
 		}
 

@@ -77,6 +77,10 @@ final class NumberRule extends AbstractRule {
 	public function validate( FormDataTree $form_data, iterable $context ) {
 		$values = $form_data->getAll( $this->field );
 
+		if ( empty( $values ) ) {
+			return true;
+		}
+
 		foreach ( $values as $value ) {
 			if ( ! self::isNumber( $value ) ) {
 				throw new Invalidity( $this );

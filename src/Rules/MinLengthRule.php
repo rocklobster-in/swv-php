@@ -57,7 +57,7 @@ final class MinLengthRule extends AbstractRule {
 	public function validate( FormDataTree $form_data, iterable $context ) {
 		$values = $form_data->getAll( $this->field );
 
-		if ( ! is_numeric( $this->threshold ) ) {
+		if ( empty( $values ) or ! is_numeric( $this->threshold ) ) {
 			return true;
 		}
 

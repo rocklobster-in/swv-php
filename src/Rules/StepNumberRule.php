@@ -58,6 +58,10 @@ final class StepNumberRule extends AbstractRule {
 	public function validate( FormDataTree $form_data, iterable $context ) {
 		$values = $form_data->getAll( $this->field );
 
+		if ( empty( $values ) ) {
+			return true;
+		}
+
 		$base = floatval( $this->base );
 		$interval = floatval( $this->interval );
 

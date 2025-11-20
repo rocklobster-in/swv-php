@@ -56,6 +56,10 @@ final class DayofweekRule extends AbstractRule {
 	public function validate( FormDataTree $form_data, iterable $context ) {
 		$values = $form_data->getAll( $this->field );
 
+		if ( empty( $values ) ) {
+			return true;
+		}
+
 		$acceptable_values = array_map( 'intval', $this->accept );
 
 		foreach ( $values as $value ) {

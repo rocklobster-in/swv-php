@@ -56,6 +56,10 @@ final class MaxFileSizeRule extends AbstractRule {
 	public function validate( FormDataTree $form_data, iterable $context ) {
 		$files = $form_data->getAllFiles( $this->field );
 
+		if ( empty( $files ) ) {
+			return true;
+		}
+
 		$file_size = array_reduce( $files, static function ( $carry, $item ) {
 			$carry += $item->size();
 			return $carry;

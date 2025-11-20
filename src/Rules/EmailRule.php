@@ -105,6 +105,10 @@ final class EmailRule extends AbstractRule {
 	public function validate( FormDataTree $form_data, iterable $context ) {
 		$values = $form_data->getAll( $this->field );
 
+		if ( empty( $values ) ) {
+			return true;
+		}
+
 		foreach ( $values as $value ) {
 			if ( ! self::isEmail( $value ) ) {
 				throw new Invalidity( $this );

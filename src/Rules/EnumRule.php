@@ -57,6 +57,10 @@ final class EnumRule extends AbstractRule {
 	public function validate( FormDataTree $form_data, iterable $context ) {
 		$values = $form_data->getAll( $this->field );
 
+		if ( empty( $values ) ) {
+			return true;
+		}
+
 		$acceptable_values = canonicalize_newline( $this->accept );
 
 		foreach ( $values as $value ) {
