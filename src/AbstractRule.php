@@ -2,6 +2,8 @@
 
 namespace RockLobsterInc\Swv;
 
+use RockLobsterInc\Swv\{ FormDataTreeInterface as FormDataTree };
+
 /**
  * Abstract class that represents the base for all SWV rules.
  */
@@ -20,10 +22,10 @@ abstract class AbstractRule {
 	/**
 	 * Validates the form data according to the logic defined by this rule.
 	 *
-	 * @param FormDataInterface $form_data Form data.
+	 * @param FormDataTree $form_data Form data.
 	 * @param iterable $context Context.
 	 */
-	public function validate( FormDataInterface $form_data, iterable $context ) {
+	public function validate( FormDataTree $form_data, iterable $context ) {
 		return true;
 	}
 

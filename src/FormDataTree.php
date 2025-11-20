@@ -3,9 +3,9 @@
 namespace RockLobsterInc\Swv;
 
 /**
- * A class that implements FormDataInterface. Wraps the PHP superglobals.
+ * A class that implements FormDataTreeInterface. Wraps the PHP superglobals.
  */
-class FormDataTree implements FormDataInterface {
+class FormDataTree implements FormDataTreeInterface {
 
 	/**
 	 * Returns the values associated with a given field name.

@@ -2,7 +2,7 @@
 
 namespace RockLobsterInc\Swv\Rules;
 
-use RockLobsterInc\Swv\{ CompositeRule, Invalidity };
+use RockLobsterInc\Swv\{ CompositeRule, Invalidity, FormDataTreeInterface as FormDataTree };
 
 final class AllRule extends CompositeRule {
 
@@ -44,10 +44,10 @@ final class AllRule extends CompositeRule {
 	/**
 	 * Validates the form data according to the logic defined by this rule.
 	 *
-	 * @param FormDataInterface $form_data Form data.
+	 * @param FormDataTree $form_data Form data.
 	 * @param iterable $context Context.
 	 */
-	public function validate( FormDataInterface $form_data, iterable $context ) {
+	public function validate( FormDataTree $form_data, iterable $context ) {
 		foreach ( $this->rules() as $rule ) {
 			if ( $rule->matches( $context ) ) {
 				try {

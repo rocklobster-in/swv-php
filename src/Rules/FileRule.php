@@ -2,7 +2,7 @@
 
 namespace RockLobsterInc\Swv\Rules;
 
-use RockLobsterInc\Swv\{ AbstractRule, Invalidity };
+use RockLobsterInc\Swv\{ AbstractRule, Invalidity, FormDataTreeInterface as FormDataTree };
 
 final class FileRule extends AbstractRule {
 
@@ -283,10 +283,10 @@ final class FileRule extends AbstractRule {
 	/**
 	 * Validates the form data according to the logic defined by this rule.
 	 *
-	 * @param FormDataInterface $form_data Form data.
+	 * @param FormDataTree $form_data Form data.
 	 * @param iterable $context Context.
 	 */
-	public function validate( FormDataInterface $form_data, iterable $context ) {
+	public function validate( FormDataTree $form_data, iterable $context ) {
 		$files = $form_data->getAllFiles( $this->field );
 
 		if ( empty( $files ) ) {
