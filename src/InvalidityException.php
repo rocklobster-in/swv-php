@@ -5,7 +5,7 @@ namespace RockLobsterInc\Swv;
 /**
  * Exception that represents a validation error.
  */
-final class Invalidity extends \Exception {
+final class InvalidityException extends \Exception {
 
 	/**
 	 * The SWV rule who has thrown this error.
