@@ -10,7 +10,7 @@ abstract class CompositeRule extends AbstractRule {
 	/**
 	 * Sub-rules of the rule.
 	 */
-	protected array $rules = array();
+	protected array $rules = [];
 
 
 	/**
