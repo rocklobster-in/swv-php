@@ -2,7 +2,7 @@
 
 namespace RockLobsterInc\Swv\Rules;
 
-use RockLobsterInc\Swv\{ AbstractRule, Invalidity, FormDataTreeInterface as FormDataTree };
+use RockLobsterInc\Swv\{ AbstractRule, InvalidityException as Invalidity, FormDataTreeInterface as FormDataTree };
 use function RockLobsterInc\Swv\{ count_code_units };
 
 final class MaxLengthRule extends AbstractRule {

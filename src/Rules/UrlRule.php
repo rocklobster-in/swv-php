@@ -2,7 +2,7 @@
 
 namespace RockLobsterInc\Swv\Rules;
 
-use RockLobsterInc\Swv\{ AbstractRule, Invalidity, FormDataTreeInterface as FormDataTree };
+use RockLobsterInc\Swv\{ AbstractRule, InvalidityException as Invalidity, FormDataTreeInterface as FormDataTree };
 
 final class UrlRule extends AbstractRule {
 

@@ -2,7 +2,7 @@
 
 namespace RockLobsterInc\Swv\Rules;
 
-use RockLobsterInc\Swv\{ AbstractRule, Invalidity, FormDataTreeInterface as FormDataTree };
+use RockLobsterInc\Swv\{ AbstractRule, InvalidityException as Invalidity, FormDataTreeInterface as FormDataTree };
 use function RockLobsterInc\Swv\{ canonicalize_newline };
 
 final class EnumRule extends AbstractRule {
