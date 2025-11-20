@@ -6,7 +6,7 @@ namespace RockLobsterInc\Swv;
  * An interface that represents form submission data in the key/value pairs
  * format.
  */
-interface FormDataInterface {
+interface FormDataTreeInterface {
 
 	/**
 	 * Returns the values associated with a given field name.
