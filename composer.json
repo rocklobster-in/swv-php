@@ -2,6 +2,7 @@
 	"name": "rocklobsterinc/swv",
 	"description": "Schema-Woven Validation for PHP",
 	"license": "MIT",
+	"version": "v0.9.1",
 	"authors": [
 		{
 			"name": "Takayuki Miyoshi",
