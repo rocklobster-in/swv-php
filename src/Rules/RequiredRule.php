@@ -14,8 +14,8 @@ final class RequiredRule extends AbstractRule {
 	/**
 	 * Rule properties.
 	 */
-	public string $field;
-	public string $error;
+	public readonly string $field;
+	public readonly string $error;
 
 
 	/**

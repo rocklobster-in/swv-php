@@ -14,9 +14,9 @@ final class MaxDateRule extends AbstractRule {
 	/**
 	 * Rule properties.
 	 */
-	public string $field;
-	public string $error;
-	public string $threshold;
+	public readonly string $field;
+	public readonly string $error;
+	public readonly string $threshold;
 
 
 	/**

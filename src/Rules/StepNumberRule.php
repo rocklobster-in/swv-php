@@ -14,10 +14,10 @@ final class StepNumberRule extends AbstractRule {
 	/**
 	 * Rule properties.
 	 */
-	public string $field;
-	public string $error;
-	public string $base;
-	public string $interval;
+	public readonly string $field;
+	public readonly string $error;
+	public readonly string $base;
+	public readonly string $interval;
 
 
 	/**

@@ -14,9 +14,9 @@ final class EnumRule extends AbstractRule {
 	/**
 	 * Rule properties.
 	 */
-	public string $field;
-	public string $error;
-	public array $accept;
+	public readonly string $field;
+	public readonly string $error;
+	public readonly array $accept;
 
 
 	/**
