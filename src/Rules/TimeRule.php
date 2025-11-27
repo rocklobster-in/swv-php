@@ -4,6 +4,7 @@ namespace RockLobsterInc\Swv\Rules;
 
 use RockLobsterInc\FormDataTree\{ FormDataTreeInterface as FormDataTree };
 use RockLobsterInc\Swv\{ AbstractRule, InvalidityException as Invalidity };
+use function RockLobsterInc\Functions\{ array_flatten };
 
 final class TimeRule extends AbstractRule {
 
@@ -80,6 +81,7 @@ final class TimeRule extends AbstractRule {
 	 */
 	public function validate( FormDataTree $form_data, iterable $context ) {
 		$values = $form_data->getAll( $this->field );
+		$values = array_flatten( $values );
 
 		if ( empty( $values ) ) {
 			return true;
