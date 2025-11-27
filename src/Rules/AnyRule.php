@@ -2,7 +2,8 @@
 
 namespace RockLobsterInc\Swv\Rules;
 
-use RockLobsterInc\Swv\{ CompositeRule, InvalidityException as Invalidity, FormDataTreeInterface as FormDataTree };
+use RockLobsterInc\FormDataTree\{ FormDataTreeInterface as FormDataTree };
+use RockLobsterInc\Swv\{ CompositeRule, InvalidityException as Invalidity };
 
 final class AnyRule extends CompositeRule {
 
