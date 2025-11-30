@@ -2,7 +2,9 @@
 
 namespace RockLobsterInc\Swv\Rules;
 
-use RockLobsterInc\Swv\{ AbstractRule, InvalidityException as Invalidity, FormDataTreeInterface as FormDataTree };
+use RockLobsterInc\FormDataTree\{ FormDataTreeInterface as FormDataTree };
+use RockLobsterInc\Swv\{ AbstractRule, InvalidityException as Invalidity };
+use function RockLobsterInc\Functions\{ array_flatten };
 
 final class MinDateRule extends AbstractRule {
 
@@ -12,9 +14,9 @@ final class MinDateRule extends AbstractRule {
 	/**
 	 * Rule properties.
 	 */
-	public string $field;
-	public string $error;
-	public string $threshold;
+	public readonly string $field;
+	public readonly string $error;
+	public readonly string $threshold;
 
 
 	/**
@@ -51,10 +53,11 @@ final class MinDateRule extends AbstractRule {
 	 * Validates the form data according to the logic defined by this rule.
 	 *
 	 * @param FormDataTree $form_data Form data.
-	 * @param iterable $context Context.
+	 * @param iterable $context Optional context.
 	 */
-	public function validate( FormDataTree $form_data, iterable $context ) {
+	public function validate( FormDataTree $form_data, iterable $context = [] ) {
 		$values = $form_data->getAll( $this->field );
+		$values = array_flatten( $values );
 
 		if ( empty( $values ) or ! DateRule::isDate( $this->threshold ) ) {
 			return true;

@@ -2,7 +2,9 @@
 
 namespace RockLobsterInc\Swv\Rules;
 
-use RockLobsterInc\Swv\{ AbstractRule, InvalidityException as Invalidity, FormDataTreeInterface as FormDataTree };
+use RockLobsterInc\FormDataTree\{ FormDataTreeInterface as FormDataTree };
+use RockLobsterInc\Swv\{ AbstractRule, InvalidityException as Invalidity };
+use function RockLobsterInc\Functions\{ array_flatten };
 
 final class FileRule extends AbstractRule {
 
@@ -213,9 +215,9 @@ final class FileRule extends AbstractRule {
 	/**
 	 * Rule properties.
 	 */
-	public string $field;
-	public string $error;
-	public array $accept;
+	public readonly string $field;
+	public readonly string $error;
+	public readonly array $accept;
 
 
 	/**
@@ -284,10 +286,11 @@ final class FileRule extends AbstractRule {
 	 * Validates the form data according to the logic defined by this rule.
 	 *
 	 * @param FormDataTree $form_data Form data.
-	 * @param iterable $context Context.
+	 * @param iterable $context Optional context.
 	 */
-	public function validate( FormDataTree $form_data, iterable $context ) {
+	public function validate( FormDataTree $form_data, iterable $context = [] ) {
 		$files = $form_data->getAllFiles( $this->field );
+		$files = array_flatten( $files );
 
 		if ( empty( $files ) ) {
 			return true;
