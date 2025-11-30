@@ -23,9 +23,9 @@ abstract class AbstractRule {
 	 * Validates the form data according to the logic defined by this rule.
 	 *
 	 * @param FormDataTree $form_data Form data.
-	 * @param iterable $context Context.
+	 * @param iterable $context Optional context.
 	 */
-	public function validate( FormDataTree $form_data, iterable $context ) {
+	public function validate( FormDataTree $form_data, iterable $context = [] ) {
 		return true;
 	}
 
