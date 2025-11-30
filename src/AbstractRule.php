@@ -2,7 +2,7 @@
 
 namespace RockLobsterInc\Swv;
 
-use RockLobsterInc\Swv\{ FormDataTreeInterface as FormDataTree };
+use RockLobsterInc\FormDataTree\{ FormDataTreeInterface as FormDataTree };
 
 /**
  * Abstract class that represents the base for all SWV rules.
