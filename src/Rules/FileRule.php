@@ -223,9 +223,9 @@ final class FileRule extends AbstractRule {
 	/**
 	 * Constructor.
 	 *
-	 * @param iterable $properties Rule properties.
+	 * @param array $properties Rule properties.
 	 */
-	public function __construct( iterable $properties = [] ) {
+	public function __construct( array $properties = [] ) {
 		$this->field = $properties[ 'field' ] ?? '';
 		$this->error = $properties[ 'error' ] ?? '';
 		$this->accept = $properties[ 'accept' ] ?? [];
@@ -267,9 +267,9 @@ final class FileRule extends AbstractRule {
 	/**
 	 * Returns true if this rule matches the given context.
 	 *
-	 * @param iterable $context Context.
+	 * @param array $context Context.
 	 */
-	public function matches( iterable $context ): bool {
+	public function matches( array $context ): bool {
 		if ( false === parent::matches( $context ) ) {
 			return false;
 		}
@@ -286,9 +286,9 @@ final class FileRule extends AbstractRule {
 	 * Validates the form data according to the logic defined by this rule.
 	 *
 	 * @param FormDataTree $form_data Form data.
-	 * @param iterable $context Optional context.
+	 * @param array $context Optional context.
 	 */
-	public function validate( FormDataTree $form_data, iterable $context = [] ) {
+	public function validate( FormDataTree $form_data, array $context = [] ) {
 		$files = $form_data->getAllFiles( $this->field );
 		$files = array_flatten( $files );
 
@@ -334,9 +334,9 @@ final class FileRule extends AbstractRule {
 	/**
 	 * Returns an array that represents the rule properties.
 	 *
-	 * @return iterable Array of rule properties.
+	 * @return array Array of rule properties.
 	 */
-	public function toArray(): iterable {
+	public function toArray(): array {
 		return [
 			'rule' => self::RULE_NAME,
 			'field' => $this->field,
