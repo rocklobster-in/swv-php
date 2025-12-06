@@ -10,7 +10,7 @@ final class InvalidityException extends \Exception {
 	/**
 	 * The SWV rule who has thrown this error.
 	 */
-	private AbstractRule $rule;
+	public readonly AbstractRule $rule;
 
 
 	/**
