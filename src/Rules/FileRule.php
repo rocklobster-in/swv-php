@@ -250,13 +250,13 @@ final class FileRule extends AbstractRule {
 			} else {
 				$mime_types = array_filter(
 					self::MIME_TYPES,
-					static function ( $mime_type ) {
+					static function ( $mime_type ) use ( $maintype ) {
 						return 0 === strpos( $mime_type, $maintype . '/' );
 					},
 					ARRAY_FILTER_USE_KEY
 				);
 
-				$results = array_merge( ...$mime_types );
+				$results = array_merge( ...array_values( $mime_types ) );
 			}
 		}
 
