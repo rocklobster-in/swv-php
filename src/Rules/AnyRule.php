@@ -49,19 +49,24 @@ final class AnyRule extends CompositeRule {
 	 * @param array $context Optional context.
 	 */
 	public function validate( FormDataTree $form_data, array $context = [] ) {
-		$any_valid = false;
+		$is_valid = null;
 
 		foreach ( $this->rules() as $rule ) {
 			if ( $rule->matches( $context ) ) {
 				try {
-					$any_valid = $rule->validate( $form_data, $context );
+					$is_valid = true;
+					$rule->validate( $form_data, $context );
 				} catch ( Invalidity $error ) {
-					// Do nothing.
+					$is_valid = false;
+				}
+
+				if ( $is_valid ) {
+					break;
 				}
 			}
 		}
 
-		if ( ! $any_valid ) {
+		if ( false === $is_valid ) {
 			throw new Invalidity( $this );
 		}
 
