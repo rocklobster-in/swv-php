@@ -6,9 +6,9 @@ use RockLobsterInc\FormDataTree\{ FormDataTreeInterface as FormDataTree };
 use RockLobsterInc\Swv\{ AbstractRule, InvalidityException as Invalidity };
 use function RockLobsterInc\Functions\{ array_flatten };
 
-final class MaxFileSizeRule extends AbstractRule {
+final class MinFilesizeRule extends AbstractRule {
 
-	const RULE_NAME = 'maxfilesize';
+	const RULE_NAME = 'minfilesize';
 
 
 	/**
@@ -68,7 +68,7 @@ final class MaxFileSizeRule extends AbstractRule {
 			return $carry;
 		}, 0 );
 
-		if ( (int) $this->threshold < $file_size ) {
+		if ( $file_size < (int) $this->threshold ) {
 			throw new Invalidity( $this );
 		}
 
