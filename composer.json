@@ -13,6 +13,12 @@
 		"rocklobsterinc/functions": "^v1.0.4",
 		"rocklobsterinc/form-data-tree": "^v2.0.3"
 	},
+	"require-dev": {
+		"php-parallel-lint/php-parallel-lint": "^1.4"
+	},
+	"scripts": {
+		"lint": "parallel-lint src/"
+	},
 	"autoload": {
 		"psr-4": {
 			"RockLobsterInc\\Swv\\": "src/"
