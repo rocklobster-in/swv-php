@@ -26,20 +26,9 @@ final class InvalidityException extends \Exception {
 	 */
 	public function __construct( AbstractRule $rule, array $options = [] ) {
 		$this->rule = $rule;
-		$this->message = $rule->error ?? '';
 		$this->cause = $options[ 'cause' ] ?? null;
-	}
 
-
-	/**
-	 * Retrieves the validation error message.
-	 */
-	public function getMessage() {
-		if ( $this->cause instanceof self ) {
-			return $this->cause->message;
-		} else {
-			return $this->message;
-		}
+		parent::__construct( $this->getErrorMessage() );
 	}
 
 
@@ -49,8 +38,20 @@ final class InvalidityException extends \Exception {
 	public function getField() {
 		if ( $this->cause instanceof self ) {
 			return $this->cause->rule->field ?? '';
-		} else {
-			return $this->rule->field ?? '';
 		}
+
+		return $this->rule->field ?? '';
+	}
+
+
+	/**
+	 * Retrieves the validation error message.
+	 */
+	private function getErrorMessage(): string {
+		if ( $this->cause instanceof self ) {
+			return $this->cause->getMessage();
+		}
+
+		return $this->rule->error ?? '';
 	}
 }
