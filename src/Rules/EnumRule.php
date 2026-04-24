@@ -37,11 +37,7 @@ final class EnumRule extends AbstractRule {
 	 * @param array $context Context.
 	 */
 	public function matches( array $context ): bool {
-		if ( empty( $context[ 'text' ] ) ) {
-			return false;
-		}
-
-		return true;
+		return ! empty( $context[ 'text' ] );
 	}
 
 
