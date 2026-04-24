@@ -34,10 +34,6 @@ final class AnyRule extends CompositeRule {
 	 * @param array $context Context.
 	 */
 	public function matches( array $context ): bool {
-		if ( false === parent::matches( $context ) ) {
-			return false;
-		}
-
 		return true;
 	}
 

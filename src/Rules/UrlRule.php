@@ -49,10 +49,6 @@ final class UrlRule extends AbstractRule {
 	 * @param array $context Context.
 	 */
 	public function matches( array $context ): bool {
-		if ( false === parent::matches( $context ) ) {
-			return false;
-		}
-
 		if ( empty( $context[ 'text' ] ) ) {
 			return false;
 		}
