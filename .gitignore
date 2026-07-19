@@ -1,3 +1,4 @@
 # ignore Composer files and directories
 composer.phar
+phpunit.phar
 vendor/
