@@ -1,0 +1,3 @@
+# ignore Composer files and directories
+composer.phar
+vendor/
