@@ -26,31 +26,32 @@ final class InvalidityException extends \Exception {
 	 */
 	public function __construct( AbstractRule $rule, array $options = [] ) {
 		$this->rule = $rule;
-		$this->message = $rule->error ?? '';
 		$this->cause = $options[ 'cause' ] ?? null;
+
+		parent::__construct( $this->getErrorMessage() );
 	}
 
 
 	/**
 	 * Retrieves the validation error message.
 	 */
-	public function getMessage() {
+	private function getErrorMessage(): string {
 		if ( $this->cause instanceof self ) {
-			return $this->cause->message;
-		} else {
-			return $this->message;
+		    return $this->cause->getMessage();
 		}
+
+		return $this->rule->error ?? '';
 	}
 
 
 	/**
 	 * Retrieves the field name where the validation error occurs.
 	 */
-	public function getField() {
+	public function getField(): string {
 		if ( $this->cause instanceof self ) {
 			return $this->cause->rule->field ?? '';
-		} else {
-			return $this->rule->field ?? '';
 		}
+
+		return $this->rule->field ?? '';
 	}
 }
