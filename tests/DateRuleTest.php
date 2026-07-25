@@ -30,15 +30,23 @@ final class DateRuleTest extends TestCase {
             'field' => 'your-date',
         ] );
 
-        $form_data = new FormDataTree( [
+        // Case 1: Field left blank.
+        $form_data_1 = new FormDataTree( [
+            'post' => [
+                'your-date' => '',
+            ],
+        ] );
+
+        $this->assertTrue( $rule->validate( $form_data_1 ) );
+
+        // Case 2: Field with a valid email.
+        $form_data_2 = new FormDataTree( [
             'post' => [
                 'your-date' => '2026-07-24',
             ],
         ] );
 
-        $result = $rule->validate( $form_data );
-
-        $this->assertTrue( $result );
+        $this->assertTrue( $rule->validate( $form_data_2 ) );
     }
 
 }
