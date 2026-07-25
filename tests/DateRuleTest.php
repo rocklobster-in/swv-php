@@ -3,19 +3,19 @@
 use PHPUnit\Framework\TestCase;
 use RockLobsterInc\FormDataTree\FormDataTree;
 use RockLobsterInc\Swv\InvalidityException;
-use RockLobsterInc\Swv\Rules\EmailRule;
+use RockLobsterInc\Swv\Rules\DateRule;
 
-final class EmailRuleTest extends TestCase {
+final class DateRuleTest extends TestCase {
 
     public function testInvalidity(): void {
-        $rule = new EmailRule( [
-            'field' => 'your-email',
+        $rule = new DateRule( [
+            'field' => 'your-date',
             'error' => 'Just another error message.',
         ] );
 
         $form_data = new FormDataTree( [
             'post' => [
-                'your-email' => 'invalid email',
+                'your-date' => 'invalid date',
             ],
         ] );
 
@@ -26,13 +26,13 @@ final class EmailRuleTest extends TestCase {
     }
 
     public function testValidity(): void {
-        $rule = new EmailRule( [
-            'field' => 'your-email',
+        $rule = new DateRule( [
+            'field' => 'your-date',
         ] );
 
         $form_data = new FormDataTree( [
             'post' => [
-                'your-email' => 'testing@example.com',
+                'your-date' => '2026-07-24',
             ],
         ] );
 
