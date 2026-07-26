@@ -1,5 +1,6 @@
 <?php
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use RockLobsterInc\FormDataTree\FormDataTree;
 use RockLobsterInc\Swv\InvalidityException;
@@ -7,7 +8,14 @@ use RockLobsterInc\Swv\Rules\EmailRule;
 
 final class EmailRuleTest extends TestCase {
 
-    public function testInvalidity(): void {
+    public static function invalidValueProvider(): array {
+        return [
+            'invalid' => [ 'invalid email' ],
+        ];
+    }
+
+    #[ DataProvider( 'invalidValueProvider' ) ]
+    public function testInvalidity( $field_value ): void {
         $rule = new EmailRule( [
             'field' => 'your-email',
             'error' => 'Just another error message.',
@@ -15,7 +23,7 @@ final class EmailRuleTest extends TestCase {
 
         $form_data = new FormDataTree( [
             'post' => [
-                'your-email' => 'invalid email',
+                'your-email' => $field_value,
             ],
         ] );
 
@@ -25,28 +33,26 @@ final class EmailRuleTest extends TestCase {
         $rule->validate( $form_data );
     }
 
-    public function testValidity(): void {
+    public static function validValueProvider(): array {
+        return [
+            'blank' => [ '' ],
+            'valid' => [ 'testing@example.com' ],
+        ];
+    }
+
+    #[ DataProvider( 'validValueProvider' ) ]
+    public function testValidity( $field_value ): void {
         $rule = new EmailRule( [
             'field' => 'your-email',
         ] );
 
-        // Case 1: Field left blank.
-        $form_data_1 = new FormDataTree( [
+        $form_data = new FormDataTree( [
             'post' => [
-                'your-email' => '',
+                'your-email' => $field_value,
             ],
         ] );
 
-        $this->assertTrue( $rule->validate( $form_data_1 ) );
-
-        // Case 2: Field with a valid email.
-        $form_data_2 = new FormDataTree( [
-            'post' => [
-                'your-email' => 'testing@example.com',
-            ],
-        ] );
-
-        $this->assertTrue( $rule->validate( $form_data_2 ) );
+        $this->assertTrue( $rule->validate( $form_data ) );
     }
 
 }
