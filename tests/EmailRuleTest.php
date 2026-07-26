@@ -34,7 +34,14 @@ final class EmailRuleTest extends TestCase {
             ],
         ] );
 
-        $this->assertTrue( $rule->validate( $form_data ) );
+        $result = false;
+
+        try {
+            $result = $rule->validate( $form_data );
+        } catch ( InvalidityException $error ) {
+        }
+
+        $this->assertTrue( $result );
     }
 
     #[ DataProvider( 'invalidValueProvider' ) ]
