@@ -8,31 +8,6 @@ use RockLobsterInc\Swv\Rules\EmailRule;
 
 final class EmailRuleTest extends TestCase {
 
-    public static function invalidValueProvider(): array {
-        return [
-            'invalid' => [ 'invalid email' ],
-        ];
-    }
-
-    #[ DataProvider( 'invalidValueProvider' ) ]
-    public function testInvalidity( $field_value ): void {
-        $rule = new EmailRule( [
-            'field' => 'your-email',
-            'error' => 'Just another error message.',
-        ] );
-
-        $form_data = new FormDataTree( [
-            'post' => [
-                'your-email' => $field_value,
-            ],
-        ] );
-
-        $this->expectException( InvalidityException::class );
-        $this->expectExceptionMessage( 'Just another error message.' );
-
-        $rule->validate( $form_data );
-    }
-
     public static function validValueProvider(): array {
         return [
             'blank' => [ '' ],
@@ -40,19 +15,44 @@ final class EmailRuleTest extends TestCase {
         ];
     }
 
+    public static function invalidValueProvider(): array {
+        return [
+            'invalid' => [ 'invalid email' ],
+        ];
+    }
+
     #[ DataProvider( 'validValueProvider' ) ]
     public function testValidity( $field_value ): void {
         $rule = new EmailRule( [
-            'field' => 'your-email',
+            'field' => 'the-field-name',
         ] );
 
         $form_data = new FormDataTree( [
             'post' => [
-                'your-email' => $field_value,
+                'the-field-name' => $field_value,
             ],
         ] );
 
         $this->assertTrue( $rule->validate( $form_data ) );
+    }
+
+    #[ DataProvider( 'invalidValueProvider' ) ]
+    public function testInvalidity( $field_value ): void {
+        $rule = new EmailRule( [
+            'field' => 'the-field-name',
+            'error' => 'Just another error message.',
+        ] );
+
+        $form_data = new FormDataTree( [
+            'post' => [
+                'the-field-name' => $field_value,
+            ],
+        ] );
+
+        $this->expectException( InvalidityException::class );
+        $this->expectExceptionMessage( 'Just another error message.' );
+
+        $rule->validate( $form_data );
     }
 
 }
