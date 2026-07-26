@@ -7,7 +7,7 @@ use RockLobsterInc\Swv\InvalidityException;
 
 final class EmailRuleTest extends TestCase {
 
-    public static string $rule_class = '\RockLobsterInc\Swv\Rules\EmailRule';
+    public static string $ruleClass = '\RockLobsterInc\Swv\Rules\EmailRule';
 
     public static function validValueProvider(): array {
         return [
@@ -24,7 +24,7 @@ final class EmailRuleTest extends TestCase {
 
     #[ DataProvider( 'validValueProvider' ) ]
     public function testValidity( $field_value ): void {
-        $rule = new self::$rule_class( [
+        $rule = new self::$ruleClass( [
             'field' => 'the-field-name',
         ] );
 
@@ -39,7 +39,7 @@ final class EmailRuleTest extends TestCase {
 
     #[ DataProvider( 'invalidValueProvider' ) ]
     public function testInvalidity( $field_value ): void {
-        $rule = new self::$rule_class( [
+        $rule = new self::$ruleClass( [
             'field' => 'the-field-name',
             'error' => 'Just another error message.',
         ] );
