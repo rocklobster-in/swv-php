@@ -8,6 +8,14 @@
 			"role": "Developer"
 		}
 	],
+	"autoload": {
+		"psr-4": {
+			"RockLobsterInc\\Swv\\": "src/"
+		},
+		"files": [
+			"src/functions.php"
+		]
+	},
 	"require": {
 		"php": ">=8.3",
 		"rocklobsterinc/functions": "^v1.0.4",
@@ -18,13 +26,5 @@
 	},
 	"scripts": {
 		"lint": "parallel-lint src/"
-	},
-	"autoload": {
-		"psr-4": {
-			"RockLobsterInc\\Swv\\": "src/"
-		},
-		"files": [
-			"src/functions.php"
-		]
 	}
 }

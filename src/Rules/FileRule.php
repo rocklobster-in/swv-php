@@ -246,7 +246,7 @@ final class FileRule extends AbstractRule {
 			$subtype = $matches[ 2 ];
 
 			if ( '*' !== $subtype ) {
-				$results = self::MIME_TYPES[ $mime ];
+				$results = self::MIME_TYPES[ $mime ] ?? [];
 			} else {
 				$mime_types = array_filter(
 					self::MIME_TYPES,

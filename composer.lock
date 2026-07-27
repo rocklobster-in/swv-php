@@ -1,0 +1,105 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "e3c8d98e7f631ef250f719cdd9e75d7b",
+    "packages": [
+        {
+            "name": "rocklobsterinc/form-data-tree",
+            "version": "v2.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rocklobster-in/form-data-tree-php.git",
+                "reference": "bc112129cd6958342a5219332002d9dae3b8cedd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rocklobster-in/form-data-tree-php/zipball/bc112129cd6958342a5219332002d9dae3b8cedd",
+                "reference": "bc112129cd6958342a5219332002d9dae3b8cedd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.3",
+                "rocklobsterinc/functions": "^v1.0.4"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/functions.php"
+                ],
+                "psr-4": {
+                    "RockLobsterInc\\FormDataTree\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Takayuki Miyoshi",
+                    "role": "Developer"
+                }
+            ],
+            "description": "FormDataTree for PHP",
+            "support": {
+                "issues": "https://github.com/rocklobster-in/form-data-tree-php/issues",
+                "source": "https://github.com/rocklobster-in/form-data-tree-php/tree/v2.0.4"
+            },
+            "time": "2026-03-30T02:57:09+00:00"
+        },
+        {
+            "name": "rocklobsterinc/functions",
+            "version": "v1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rocklobster-in/functions-php.git",
+                "reference": "99b4b63a044d57156dd9e2b96b1260775f00563c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rocklobster-in/functions-php/zipball/99b4b63a044d57156dd9e2b96b1260775f00563c",
+                "reference": "99b4b63a044d57156dd9e2b96b1260775f00563c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.3"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Takayuki Miyoshi",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Rock Lobster's PHP function library",
+            "support": {
+                "issues": "https://github.com/rocklobster-in/functions-php/issues",
+                "source": "https://github.com/rocklobster-in/functions-php/tree/v1.0.4"
+            },
+            "time": "2025-12-16T09:37:26+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {},
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=8.3"
+    },
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
+}
