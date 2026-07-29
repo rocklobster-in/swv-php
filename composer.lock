@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e3c8d98e7f631ef250f719cdd9e75d7b",
+    "content-hash": "c98c6c13fa8f49e353640a76b0969c02",
     "packages": [
         {
             "name": "rocklobsterinc/form-data-tree",
-            "version": "v2.0.4",
+            "version": "v2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rocklobster-in/form-data-tree-php.git",
-                "reference": "bc112129cd6958342a5219332002d9dae3b8cedd"
+                "reference": "27e6fe0c8e795087dd3fa803d82d9126d4f42e7c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rocklobster-in/form-data-tree-php/zipball/bc112129cd6958342a5219332002d9dae3b8cedd",
-                "reference": "bc112129cd6958342a5219332002d9dae3b8cedd",
+                "url": "https://api.github.com/repos/rocklobster-in/form-data-tree-php/zipball/27e6fe0c8e795087dd3fa803d82d9126d4f42e7c",
+                "reference": "27e6fe0c8e795087dd3fa803d82d9126d4f42e7c",
                 "shasum": ""
             },
             "require": {
@@ -46,9 +46,9 @@
             "description": "FormDataTree for PHP",
             "support": {
                 "issues": "https://github.com/rocklobster-in/form-data-tree-php/issues",
-                "source": "https://github.com/rocklobster-in/form-data-tree-php/tree/v2.0.4"
+                "source": "https://github.com/rocklobster-in/form-data-tree-php/tree/v2.0.5"
             },
-            "time": "2026-03-30T02:57:09+00:00"
+            "time": "2026-07-21T09:26:13+00:00"
         },
         {
             "name": "rocklobsterinc/functions",

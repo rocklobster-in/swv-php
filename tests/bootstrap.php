@@ -2,73 +2,36 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-class MockFormDataTree extends \RockLobsterInc\FormDataTree\FormDataTree {
+use RockLobsterInc\FormDataTree\FileInterface;
 
-    public readonly array $mockPost;
-    public readonly array $mockFiles;
+class FileMock implements FileInterface {
 
-    public function __construct( array $mock ) {
-        $this->mockPost = $mock[ 'post' ] ?? [];
-        $this->mockFiles = $mock[ 'files' ] ?? [];
-    }
+    private string $name;
+	private int $size;
+	private string $temporaryFilePath;
+	private int $error;
 
-	public function getAll( string $name ): iterable {
-		$name_parts = dissolve_name( $name );
-
-		if ( empty( $name_parts ) ) {
-			return [];
-		}
-
-		$posted_value = $this->mockPost;
-
-		while ( $next = array_shift( $name_parts ) ) {
-			if (
-				preg_match( '/^[0-9]*$/', $next ) or
-				! isset( $posted_value[ $next ] )
-			) {
-				return [];
-			}
-
-			$posted_value = $posted_value[ $next ];
-		}
-
-		if ( ! is_array( $posted_value ) ) {
-			$posted_value = [ $posted_value ];
-		}
-
-		$posted_value = strip_whitespaces( $posted_value );
-		$posted_value = exclude_blank( $posted_value );
-
-		return $posted_value;
+    public function __construct( array $properties = [] ) {
+		$this->name = $properties[ 'name' ];
+		$this->size = $properties[ 'size' ];
+		$this->temporaryFilePath = $properties[ 'temporaryFilePath' ];
+		$this->error = $properties[ 'error' ];
 	}
 
-	public function getAllFiles( string $name ): iterable {
-		$name_parts = dissolve_name( $name );
+	public function name(): string {
+		return $this->name;
+	}
 
-		if ( empty( $name_parts ) ) {
-			return [];
-		}
+	public function size(): int {
+		return $this->size;
+	}
 
-		$files_tree = $this->mockFiles;
+	public function temporaryFilePath(): string {
+		return $this->temporaryFilePath;
+	}
 
-		while ( $next = array_shift( $name_parts ) ) {
-			if (
-				preg_match( '/^[0-9]*$/', $next ) or
-				! isset( $files_tree[ $next ] )
-			) {
-				return [];
-			}
-
-			$files_tree = $files_tree[ $next ];
-		}
-
-		if ( ! is_array( $files_tree ) ) {
-			$files_tree = [ $files_tree ];
-		}
-
-		$files_tree = exclude_blank( $files_tree );
-
-		return $files_tree;
+	public function error(): int {
+		return $this->error;
 	}
 
 }
