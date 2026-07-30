@@ -1,5 +1,4 @@
 # ignore Composer files and directories
 composer.phar
-phpunit.phar
-.phpunit.result.cache
 vendor/
+.phpunit*
