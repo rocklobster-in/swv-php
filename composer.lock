@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9eaa68e9c41e0963c6e73b7c35953189",
+    "content-hash": "deb7666d8fa0d34a6811f99a453cfb1c",
     "packages": [
         {
             "name": "rocklobsterinc/form-data-tree",
