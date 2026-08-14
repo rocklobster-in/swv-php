@@ -11,15 +11,15 @@ final class StepNumberRuleTest extends TestCase {
 
     public static function validValueProvider(): array {
         return [
-            'blank' => [ '', 12, 3 ],
-            'non-number' => [ 'xxx', 12, 3 ],
-            'valid' => [ '21', 12, 3 ],
+            'blank' => [ '', 1.3, 3 ],
+            'non-number' => [ 'xxx', 1.3, 3 ],
+            'valid' => [ '10.3', 1.3, 3 ],
         ];
     }
 
     public static function invalidValueProvider(): array {
         return [
-            'invalid' => [ '22', 12, 3 ],
+            'invalid' => [ '11.3', 1.3, 3 ],
         ];
     }
 
