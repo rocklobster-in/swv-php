@@ -73,6 +73,10 @@ final class StepNumberRule extends AbstractRule {
 		}
 
 		foreach ( $values as $value ) {
+    		if ( ! NumberRule::isNumber( $value ) ) {
+    			continue;
+    		}
+
 			$remainder = fmod( floatval( $value ) - $base, $interval );
 
 			if (
